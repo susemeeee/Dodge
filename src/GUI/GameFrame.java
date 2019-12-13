@@ -27,6 +27,8 @@ public class GameFrame extends JFrame{
 		}
 		else if(panelName.equals(GamePanel.class.getName())) {
 	        instance.setContentPane(new GamePanel());
+	        instance.getContentPane().requestFocus();
+	        instance.getContentPane().setFocusable(true);
 		}
 		else if(panelName.equals(RankingPanel.class.getName())) {
 	        instance.setContentPane(new RankingPanel());

@@ -10,7 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class LoginPanel extends JPanel{
-	private JLabel loginLabel = new JLabel("username");
+	private JLabel gameTitleLabel = new JLabel("¶ËÇÇÇÏ±â");
+	private JLabel loginLabel = new JLabel("username : ");
 	private JTextField username = new JTextField();
 	private JButton loginButton = new JButton("login");
 	
@@ -25,12 +26,26 @@ public class LoginPanel extends JPanel{
 			}
 		});
 		
+		add(gameTitleLabel);
 		add(loginButton);
+		add(loginLabel);
+		add(username);
 	}
 	
 	private void setDefaultPanel() {
-		loginButton.setSize(100, 50);
-		loginButton.setLocation(200, 300);
+		gameTitleLabel.setSize(400, 100);
+		gameTitleLabel.setLocation(300, 100);
+		gameTitleLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 48));
+		
+		loginButton.setSize(100, 25);
+		loginButton.setLocation(550, 350);
 		loginButton.setFont(new Font("consolas", Font.BOLD, 20));
+		
+		username.setSize(200, 25);
+		username.setLocation(300, 350);
+		
+		loginLabel.setSize(200, 25);
+		loginLabel.setLocation(150, 350);
+		loginLabel.setFont(new Font("consolas", Font.PLAIN, 20));
 	}
 }

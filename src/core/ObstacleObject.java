@@ -1,13 +1,15 @@
 package core;
 
-public class ObstacleObject {
-	private Coordinates sizeRange;
-	private Coordinates currentPosition;
+import java.awt.Point;
+
+import javax.swing.ImageIcon;
+
+public class ObstacleObject extends FallingObject{
 	private int damage;
 	
 	public ObstacleObject() {
+		fallingObjectImage = new ImageIcon("gamefiles/images/obstacle1.png");
+		currentPosition = new Point((int)Math.random() * 800, 0);
 		
-		
-		damage = 1;
 	}
 }
