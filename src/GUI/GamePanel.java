@@ -1,16 +1,22 @@
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import core.FallingObjectManager;
 import core.FallingObjectThread;
 import core.GameCharacter;
+import core.MovingThread;
 
 public class GamePanel extends JPanel {
 	private final int MIN_X = 0;
@@ -22,7 +28,10 @@ public class GamePanel extends JPanel {
 	private FallingObjectManager fallingManager = new FallingObjectManager();
 	private ArrayList<JLabel> fallingLabel = new ArrayList<JLabel>();
 	private FallingObjectThread fallingThread = new FallingObjectThread(this);
+	private MovingThread movingThread = new MovingThread(this);
 	private int fallingObjectNum = 30;
+	private int isKeyPressed = 0;
+	private int keycode = 0;
 
 	public GamePanel() {
 		setLayout(null);
@@ -30,48 +39,33 @@ public class GamePanel extends JPanel {
 		setDefaultpanel();
 		
 		fallingThread.start();
-	
+		movingThread.start();
+		
 		addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				int keycode = e.getKeyCode();
+			public void keyTyped(KeyEvent e) {
+		//		keycode = e.getKeyCode();
+		//		isKeyPressed = 1;
+			}
 
-				switch (keycode) {
-				case KeyEvent.VK_LEFT:
-					gameCharacter.getCurrentPosition().x -= 20;
-					setCharacterPosition();
-					break;
-				case KeyEvent.VK_RIGHT:
-					gameCharacter.getCurrentPosition().x += 20;
-					setCharacterPosition();
-					break;
-				default:
-					break;
+			@Override
+			public void keyPressed(KeyEvent e) {
+				keycode = e.getKeyCode();
+				if(keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT) {
+					isKeyPressed = 1;
 				}
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
-				int keycode = e.getKeyCode();
-
-				switch (keycode) {
-				case KeyEvent.VK_LEFT:
-					gameCharacter.getCurrentPosition().x -= 20;
-					setCharacterPosition();
-					break;
-				case KeyEvent.VK_RIGHT:
-					gameCharacter.getCurrentPosition().x += 20;
-					setCharacterPosition();
-					break;
-				default:
-					break;
+				if(keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT) {
+					isKeyPressed = 0;
 				}
 			}
 		});
 		
 		for(int i=0; i<fallingObjectNum; i++) {
 			add(fallingLabel.get(i));
-			System.out.println("ADD DONE " + i);
 		}
 		
 		add(characterLabel);
@@ -96,7 +90,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
-	private void setCharacterPosition() {
+	public void setCharacterPosition() {
 		if(gameCharacter.getCurrentPosition().x < MIN_X) {
 			gameCharacter.getCurrentPosition().x = 0;
 		}
@@ -110,9 +104,21 @@ public class GamePanel extends JPanel {
 	
 	public void setFallingObjectPosition() {
 		for(int i=0; i<fallingManager.getCurrentObjectCount(); i++) {
-			fallingManager.getFallingObject(i).setCurrentPosition(5);
+			fallingManager.getFallingObject(i).setCurrentPosition(1);
 			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
 		}
+	}
+	
+	public int getKeyStatus() {
+		return isKeyPressed;
+	}
+	
+	public int getKeyCode() {
+		return keycode;
+	}
+	
+	public GameCharacter getGameCharacter() {
+		return gameCharacter;
 	}
 	
 }
