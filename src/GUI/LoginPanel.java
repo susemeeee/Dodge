@@ -9,7 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class LoginPanel extends JPanel{
+import core.GameManager;
+//TODO
+//	GamePanel에서 생성되는 GameCharacter 여기서 생성한후 changePanel에 던져주기
+public class LoginPanel extends JPanel {
 	private JLabel gameTitleLabel = new JLabel("똥피하기");
 	private JLabel loginLabel = new JLabel("username : ");
 	private JTextField username = new JTextField();
@@ -22,6 +25,7 @@ public class LoginPanel extends JPanel{
 		loginButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				//GameManager.loadUser(username.getText(), gameCharacter);
 				GameFrame.changePanel(MainPanel.class.getName());
 			}
 		});
