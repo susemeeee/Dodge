@@ -4,12 +4,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import javax.crypto.spec.GCMParameterSpec;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import core.FallingObjectManager;
+import core.FallingObjectThread;
 import core.GameCharacter;
 
 public class GamePanel extends JPanel {
@@ -21,14 +21,15 @@ public class GamePanel extends JPanel {
 	private JLabel groundLabel;
 	private FallingObjectManager fallingManager = new FallingObjectManager();
 	private ArrayList<JLabel> fallingLabel = new ArrayList<JLabel>();
+	private FallingObjectThread fallingThread = new FallingObjectThread(this);
+	private int fallingObjectNum = 15;
 
 	public GamePanel() {
 		setLayout(null);
 		
-		characterLabel = new JLabel(gameCharacter.getCharacterImage());
-		groundLabel = new JLabel(groundIcon);
-		
 		setDefaultpanel();
+		
+		fallingThread.start();
 	
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -68,16 +69,31 @@ public class GamePanel extends JPanel {
 			}
 		});
 		
+		for(int i=0; i<fallingObjectNum; i++) {
+			add(fallingLabel.get(i));
+			System.out.println("ADD DONE " + i);
+		}
+		
 		add(characterLabel);
 		add(groundLabel);
 	}
 	
 	private void setDefaultpanel() {
+		characterLabel = new JLabel(gameCharacter.getCharacterImage());
 		characterLabel.setLocation(gameCharacter.getCurrentPosition().x, gameCharacter.getCurrentPosition().y);
 		characterLabel.setSize(50, 50);
 		
+		groundLabel = new JLabel(groundIcon);
 		groundLabel.setLocation(0, 525);
 		groundLabel.setSize(800, 50);
+		
+		for(int i=0; i<fallingObjectNum; i++) {
+			fallingManager.addFallingObject(i*(-50));
+			
+			fallingLabel.add(new JLabel(fallingManager.getFallingObjectImage(i)));
+			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
+			fallingLabel.get(i).setSize(40, 40);
+		}
 	}
 	
 	private void setCharacterPosition() {
@@ -90,6 +106,20 @@ public class GamePanel extends JPanel {
 		
 		characterLabel.setLocation(gameCharacter.getCurrentPosition().x, gameCharacter.getCurrentPosition().y);
 		characterLabel.setSize(50, 50);
+	}
+	
+	public void setFallingObjectPosition() {
+		for(int i=0; i<fallingManager.getCurrentObjectCount(); i++) {
+			fallingManager.getFallingObject(i).setCurrentPosition(20);
+			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
+			System.out.println("count = " + i + ", currentObjectCount = " + fallingManager.getCurrentObjectCount());
+			try {
+				Thread.sleep(10);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }

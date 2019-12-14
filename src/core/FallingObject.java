@@ -16,4 +16,12 @@ public class FallingObject {
 	public ImageIcon getFallingObjectImage() {
 		return fallingObjectImage;
 	}
+	
+	public void setCurrentPosition(int fallHeight) {
+		currentPosition.y += fallHeight;
+		if(currentPosition.y > 525) {
+			currentPosition.y = -250;
+		}
+	}
+	
 }

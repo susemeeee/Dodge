@@ -7,9 +7,8 @@ import javax.swing.ImageIcon;
 public class ObstacleObject extends FallingObject{
 	private int damage;
 	
-	public ObstacleObject() {
+	public ObstacleObject(int y) {
 		fallingObjectImage = new ImageIcon("gamefiles/images/obstacle1.png");
-		currentPosition = new Point((int)Math.random() * 800, 0);
-		
+		currentPosition = new Point((int)(Math.random() * 800), y);
 	}
 }
