@@ -20,6 +20,7 @@ public class FallingObject {
 	public void setCurrentPosition(int fallHeight) {
 		currentPosition.y += fallHeight;
 		if(currentPosition.y > 525) {
+			currentPosition.x = (int)(Math.random()*800);
 			currentPosition.y = -250;
 		}
 	}
