@@ -12,6 +12,12 @@ public class FallingObjectThread extends Thread {
 	public void run() {
 		while(true) {
 			gamePanel.setFallingObjectPosition();
+			try {
+				Thread.sleep(10);
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

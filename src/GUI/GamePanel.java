@@ -22,7 +22,7 @@ public class GamePanel extends JPanel {
 	private FallingObjectManager fallingManager = new FallingObjectManager();
 	private ArrayList<JLabel> fallingLabel = new ArrayList<JLabel>();
 	private FallingObjectThread fallingThread = new FallingObjectThread(this);
-	private int fallingObjectNum = 15;
+	private int fallingObjectNum = 30;
 
 	public GamePanel() {
 		setLayout(null);
@@ -110,15 +110,8 @@ public class GamePanel extends JPanel {
 	
 	public void setFallingObjectPosition() {
 		for(int i=0; i<fallingManager.getCurrentObjectCount(); i++) {
-			fallingManager.getFallingObject(i).setCurrentPosition(20);
+			fallingManager.getFallingObject(i).setCurrentPosition(5);
 			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
-			System.out.println("count = " + i + ", currentObjectCount = " + fallingManager.getCurrentObjectCount());
-			try {
-				Thread.sleep(10);
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 	
