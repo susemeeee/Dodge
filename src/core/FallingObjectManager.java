@@ -9,11 +9,23 @@ public class FallingObjectManager {
 	private int	currentObjectCount = 0;
 	
 	public FallingObjectManager() {
-		objectList.add(new ObstacleObject());
-		currentObjectCount++;
+		
+	}
+	
+	public int getCurrentObjectCount() {
+		return currentObjectCount;
+	}
+	
+	public FallingObject getFallingObject(int index) {
+		return objectList.get(index);
 	}
 	
 	public ImageIcon getFallingObjectImage(int index) {
 		return objectList.get(index).getFallingObjectImage();
+	}
+	
+	public void addFallingObject(int gap) {
+		objectList.add(new ObstacleObject(gap));
+		currentObjectCount++;
 	}
 }
