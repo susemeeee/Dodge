@@ -19,16 +19,15 @@ public class GameManager {
 	
 	public static void loadUser(String username, GameCharacter gameCharacter) throws IOException {
 		try {
-			File userFile = new File("gamefiles/users/" + username + ".txt");
+			String filename = "gamefiles/users/" + username + ".txt";
+			File userFile = new File(filename);
 			BufferedReader userInfoFile = new BufferedReader(new InputStreamReader(new FileInputStream(userFile), "UTF8"));
 			String infoLine = userInfoFile.readLine();
 			String[] splitLine;
 			
-			while(infoLine != null) {
-				splitLine = infoLine.split("=");
-				gameCharacter.setHighScore(Integer.parseInt(splitLine[1]));
-			}//추가기능 고려해서 반복문 넣음
-			
+			splitLine = infoLine.split("=");
+			gameCharacter.setHighScore(Integer.parseInt(splitLine[1]));
+			System.out.println(1);
 			userInfoFile.close();
 		} catch (FileNotFoundException e) {
 			createUser(username);

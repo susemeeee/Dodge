@@ -21,7 +21,7 @@ import core.MovingThread;
 public class GamePanel extends JPanel {
 	private final int MIN_X = 0;
 	private final int MAX_X = 750;
-	private GameCharacter gameCharacter = new GameCharacter();
+	private GameCharacter currentGameCharacter;
 	private JLabel characterLabel;
 	private ImageIcon groundIcon = new ImageIcon("gamefiles/images/ground.png");
 	private JLabel groundLabel;
@@ -33,23 +33,18 @@ public class GamePanel extends JPanel {
 	private int isKeyPressed = 0;
 	private int keycode = 0;
 
-	public GamePanel() {
+	public GamePanel(GameCharacter gameCharacter) {
+		this.currentGameCharacter = gameCharacter;
 		setLayout(null);
 		
-		setDefaultpanel();
+		setDefaultpanel(gameCharacter);
 		
 		fallingThread.start();
 		movingThread.start();
 		
 		addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
-		//		keycode = e.getKeyCode();
-		//		isKeyPressed = 1;
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
+			public void keyPressed(KeyEvent e) {//?
 				keycode = e.getKeyCode();
 				if(keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT) {
 					isKeyPressed = 1;
@@ -57,7 +52,7 @@ public class GamePanel extends JPanel {
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(KeyEvent e) {//?
 				if(keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT) {
 					isKeyPressed = 0;
 				}
@@ -72,7 +67,7 @@ public class GamePanel extends JPanel {
 		add(groundLabel);
 	}
 	
-	private void setDefaultpanel() {
+	private void setDefaultpanel(GameCharacter gameCharacter) {
 		characterLabel = new JLabel(gameCharacter.getCharacterImage());
 		characterLabel.setLocation(gameCharacter.getCurrentPosition().x, gameCharacter.getCurrentPosition().y);
 		characterLabel.setSize(50, 50);
@@ -91,14 +86,14 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void setCharacterPosition() {
-		if(gameCharacter.getCurrentPosition().x < MIN_X) {
-			gameCharacter.getCurrentPosition().x = 0;
+		if(currentGameCharacter.getCurrentPosition().x < MIN_X) {
+			currentGameCharacter.getCurrentPosition().x = 0;
 		}
-		else if(gameCharacter.getCurrentPosition().x > MAX_X) {
-			gameCharacter.getCurrentPosition().x = 750;
+		else if(currentGameCharacter.getCurrentPosition().x > MAX_X) {
+			currentGameCharacter.getCurrentPosition().x = 750;
 		}
 		
-		characterLabel.setLocation(gameCharacter.getCurrentPosition().x, gameCharacter.getCurrentPosition().y);
+		characterLabel.setLocation(currentGameCharacter.getCurrentPosition().x, currentGameCharacter.getCurrentPosition().y);
 		characterLabel.setSize(50, 50);
 	}
 	
@@ -118,7 +113,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	public GameCharacter getGameCharacter() {
-		return gameCharacter;
+		return currentGameCharacter;
 	}
 	
 }

@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.JFrame;
 
+import core.GameCharacter;
+
 public class GameFrame extends JFrame{
 	private static GameFrame instance;
 	
@@ -19,19 +21,19 @@ public class GameFrame extends JFrame{
 		instance = new GameFrame();
 	}
 	
-	public static void changePanel(String panelName) {
+	public static void changePanel(String panelName, GameCharacter gameCharacter) {
 		instance.getContentPane().removeAll();
 		
 		if(panelName.equals(MainPanel.class.getName())) {
-	        instance.setContentPane(new MainPanel());
+	        instance.setContentPane(new MainPanel(gameCharacter));
 		}
 		else if(panelName.equals(GamePanel.class.getName())) {
-	        instance.setContentPane(new GamePanel());
+	        instance.setContentPane(new GamePanel(gameCharacter));
 	        instance.getContentPane().requestFocus();
 	        instance.getContentPane().setFocusable(true);
 		}
 		else if(panelName.equals(RankingPanel.class.getName())) {
-	        instance.setContentPane(new RankingPanel());
+	        instance.setContentPane(new RankingPanel());//¾ÆÁ÷ ¾È¸¸µë
 		}
 		
         instance.getContentPane().revalidate();
