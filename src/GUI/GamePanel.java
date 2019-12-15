@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -129,20 +130,27 @@ public class GamePanel extends JPanel {
 		int characterTop = currentGameCharacter.getCurrentPosition().y+10;
 		
 		for (int i = 0; i < fallingManager.getCurrentObjectCount(); i++) {
-			int objectLeft = fallingManager.getFallingObject(i).getCurrentPosition().x+5;
+			int objectLeft = fallingManager.getFallingObject(i).getCurrentPosition().x+10;
 			int objectRight = objectLeft + fallingManager.getFallingObject(i).getSizeRange().x;
-			int objectBottom = fallingManager.getFallingObject(i).getCurrentPosition().y + fallingManager.getFallingObject(i).getSizeRange().y;
+			int objectBottom = fallingManager.getFallingObject(i).getCurrentPosition().y + fallingManager.getFallingObject(i).getSizeRange().y+10;
 			
 			if (((characterRight > objectLeft && characterLeft < objectLeft)
 					|| (characterRight > objectRight && characterLeft < objectRight))
 				&& characterTop < objectBottom)
 			{
-				fallingLabel.get(i).setIcon(new ImageIcon("gamefiles/images/obstacle2.png"));
-				//GameFrame.changePanel(GameOverPanel.class.getName(), currentGameCharacter);
-				//return;
-			}
-			if(fallingManager.getFallingObject(i).getCurrentPosition().y == -250) {
-				fallingLabel.get(i).setIcon(new ImageIcon("gamefiles/images/obstacle1.png"));
+				characterLabel.setIcon(new ImageIcon("gamefiles/images/shockwave.png"));
+				fallingThread.stop();
+				movingThread.stop();
+				try {
+					Thread.sleep(2500);
+					GameFrame.changePanel(GameOverPanel.class.getName(), currentGameCharacter);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				rulingThread.stop();
 			}
 		}
 	}
