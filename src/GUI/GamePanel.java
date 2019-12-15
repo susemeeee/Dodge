@@ -53,7 +53,10 @@ public class GamePanel extends JPanel {
 
 			@Override
 			public void keyReleased(KeyEvent e) {//?
+				int releasedKeycode = e.getKeyCode();
 				if(keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT) {
+					if(releasedKeycode != keycode)
+						return;
 					isKeyPressed = 0;
 				}
 			}
