@@ -119,4 +119,8 @@ public class GamePanel extends JPanel {
 		return currentGameCharacter;
 	}
 	
+	public FallingObjectManager getFallingManager() {
+		return fallingManager;
+	}
+	
 }

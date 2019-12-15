@@ -35,6 +35,9 @@ public class GameFrame extends JFrame{
 		else if(panelName.equals(RankingPanel.class.getName())) {
 	        instance.setContentPane(new RankingPanel());//¾ÆÁ÷ ¾È¸¸µë
 		}
+		else if(panelName.equals(GameOverPanel.class.getName())) {
+			instance.setContentPane(new GameOverPanel());
+		}
 		
         instance.getContentPane().revalidate();
         instance.getContentPane().repaint();
