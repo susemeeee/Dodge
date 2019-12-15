@@ -1,6 +1,7 @@
 package core;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import GUI.GameFrame;
 import GUI.GameOverPanel;
@@ -34,7 +35,11 @@ public class MovingThread extends Thread {
             			character.getCurrentPosition().x < fallingObject.getCurrentPosition().x + 20 &&
             			character.getCurrentPosition().y < fallingObject.getCurrentPosition().y + 20 &&
             			character.getCurrentPosition().y > fallingObject.getCurrentPosition().y - 20 ) {
-            		GameFrame.changePanel(GameOverPanel.class.getName(), character);
+            		try {
+						GameFrame.changePanel(GameOverPanel.class.getName(), character);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
             		return;
             	}
             }

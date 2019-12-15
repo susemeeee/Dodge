@@ -3,6 +3,7 @@ package GUI;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,14 +23,22 @@ public class MainPanel extends JPanel {
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
+				try {
+					GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
 		rankingButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
+				try {
+					GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 

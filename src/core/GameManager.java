@@ -9,6 +9,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import GUI.GameFrame;
 
@@ -27,7 +29,7 @@ public class GameManager {
 			
 			splitLine = infoLine.split("=");
 			gameCharacter.setHighScore(Integer.parseInt(splitLine[1]));
-			System.out.println(1);
+
 			userInfoFile.close();
 		} catch (FileNotFoundException e) {
 			createUser(username);
@@ -48,4 +50,26 @@ public class GameManager {
 			e.printStackTrace();
 		} 
 	}
+	
+	public static void readRanking(ArrayList<String> usernameArray, ArrayList<Integer> highscoreArray) throws IOException {
+		try {
+			File rankeingFile = new File("gamefiles/users/Ranking.txt");
+			BufferedReader rankingBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(rankeingFile),"UTF8"));
+			String fileLine = rankingBuffer.readLine();
+			String[] splitLine;
+			
+			while(fileLine != null) {
+				splitLine = fileLine.split("=");
+				usernameArray.add(splitLine[0]);
+				highscoreArray.add(Integer.parseInt(splitLine[1]));
+				fileLine = rankingBuffer.readLine();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}//use RankingPanel
+	
+	public static void sortRanking(int highscore) {
+		
+	}//use GameOverPanel
 }

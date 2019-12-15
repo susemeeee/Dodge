@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -12,8 +14,7 @@ import javax.swing.JTextField;
 
 import core.GameCharacter;
 import core.GameManager;
-//TODO
-//	GamePanel에서 생성되는 GameCharacter 여기서 생성한후 changePanel에 던져주기
+
 public class LoginPanel extends JPanel {
 	private JLabel gameTitleLabel = new JLabel("똥피하기");
 	private JLabel loginLabel = new JLabel("username : ");
@@ -37,7 +38,33 @@ public class LoginPanel extends JPanel {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+				try {
+					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		usernameField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String username = usernameField.getText();
+					if(username.trim().length() == 0) {
+						System.exit(0);//임시로 프로그램 꺼놓음 나중에 조치예정 (이름 무조건 입력해야됨)
+					}
+					try {
+						GameManager.loadUser(username, gameCharacter);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					try {
+						GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
 		

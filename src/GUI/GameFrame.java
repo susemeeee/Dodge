@@ -1,5 +1,7 @@
 package GUI;
 
+import java.io.IOException;
+
 import javax.swing.JFrame;
 
 import core.GameCharacter;
@@ -21,7 +23,7 @@ public class GameFrame extends JFrame{
 		instance = new GameFrame();
 	}
 	
-	public static void changePanel(String panelName, GameCharacter gameCharacter) {
+	public static void changePanel(String panelName, GameCharacter gameCharacter) throws IOException {
 		instance.getContentPane().removeAll();
 		
 		if(panelName.equals(MainPanel.class.getName())) {
@@ -33,10 +35,10 @@ public class GameFrame extends JFrame{
 	        instance.getContentPane().setFocusable(true);
 		}
 		else if(panelName.equals(RankingPanel.class.getName())) {
-	        instance.setContentPane(new RankingPanel());//¾ÆÁ÷ ¾È¸¸µë
+	        instance.setContentPane(new RankingPanel(gameCharacter));
 		}
 		else if(panelName.equals(GameOverPanel.class.getName())) {
-			instance.setContentPane(new GameOverPanel());
+			instance.setContentPane(new GameOverPanel());//¾ÆÁ÷ ¾È¸¸µë
 		}
 		
         instance.getContentPane().revalidate();
