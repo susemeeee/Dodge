@@ -28,6 +28,10 @@ public class GameCharacter {
 		return characterImage;
 	}
 	
+	public int getHighScore() {
+		return highScore;
+	}
+	
 	public void setHighScore(int highScore) {
 		this.highScore = highScore;
 	}

@@ -8,9 +8,7 @@ public class FallingObjectManager {
 	private ArrayList<FallingObject> objectList = new ArrayList<FallingObject>();
 	private int	currentObjectCount = 0;
 	
-	public FallingObjectManager() {
-		
-	}
+	public FallingObjectManager() {  }
 	
 	public int getCurrentObjectCount() {
 		return currentObjectCount;
