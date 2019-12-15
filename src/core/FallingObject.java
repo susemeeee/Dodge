@@ -13,6 +13,10 @@ public class FallingObject {
 		return currentPosition;
 	}
 	
+	public Point getSizeRange() {
+		return sizeRange;
+	}
+	
 	public ImageIcon getFallingObjectImage() {
 		return fallingObjectImage;
 	}
