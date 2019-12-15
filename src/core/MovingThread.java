@@ -27,20 +27,8 @@ public class MovingThread extends Thread {
                     gamePanel.setCharacterPosition();
                 }
             }
-            
-            for(int i=0; i<gamePanel.getFallingManager().getCurrentObjectCount(); i++) {
-            	FallingObject fallingObject = gamePanel.getFallingManager().getFallingObject(i);
-            	if(character.getCurrentPosition().x > fallingObject.getCurrentPosition().x - 20 &&
-            			character.getCurrentPosition().x < fallingObject.getCurrentPosition().x + 20 &&
-            			character.getCurrentPosition().y < fallingObject.getCurrentPosition().y + 20 &&
-            			character.getCurrentPosition().y > fallingObject.getCurrentPosition().y - 20 ) {
-            		GameFrame.changePanel(GameOverPanel.class.getName(), character);
-            		return;
-            	}
-            }
-            
             try {
-            Thread.sleep(2);
+            	Thread.sleep(2);
             } 
             catch (InterruptedException e) {
                 e.printStackTrace();

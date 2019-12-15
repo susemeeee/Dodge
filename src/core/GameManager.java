@@ -27,7 +27,6 @@ public class GameManager {
 			
 			splitLine = infoLine.split("=");
 			gameCharacter.setHighScore(Integer.parseInt(splitLine[1]));
-			System.out.println(1);
 			userInfoFile.close();
 		} catch (FileNotFoundException e) {
 			createUser(username);

@@ -12,6 +12,7 @@ public class GameCharacter {
 	
 	public GameCharacter() {
 		currentPosition = new Point(400, 500);
+		sizeRange = new Point(30,30);
 		highScore = 0;
 	}
 	
