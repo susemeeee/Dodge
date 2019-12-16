@@ -60,9 +60,13 @@ public class MainPanel extends JPanel {
 
 		startButton.setFont(new Font("Consolas", Font.BOLD, 30));
 		rankingButton.setFont(new Font("Consolas", Font.BOLD, 30));
+		
+		startButton.setContentAreaFilled(false);
+		rankingButton.setContentAreaFilled(false);
 
 		gameTitleLabel.setSize(400, 100);
 		gameTitleLabel.setLocation(300, 100);
 		gameTitleLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 48));
+		
 	}
 }

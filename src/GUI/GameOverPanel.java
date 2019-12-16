@@ -36,6 +36,7 @@ public class GameOverPanel extends JPanel {
 		backButton.setSize(100,40);
 		backButton.setLocation(10, 10);
 		backButton.setFont(new Font("consolas", Font.BOLD, 24));
+		backButton.setContentAreaFilled(false);
 		
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -58,17 +59,18 @@ public class GameOverPanel extends JPanel {
 	
 	private void setDefaultPanel(GameCharacter gameCharacter) {
 		gameOverLabel.setSize(300, 70);
-		gameOverLabel.setLocation(300, 100);
+		gameOverLabel.setLocation(320, 100);
 		gameOverLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 36));
 		
 		scoreTitleLabel.setSize(300, 70);
-		scoreTitleLabel.setLocation(200, 200);
+		scoreTitleLabel.setLocation(270, 200);
 		scoreTitleLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 24));
 		
 		scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
-		scoreLabel.setSize(300, 70);
-		scoreLabel.setLocation(300, 200);
+		scoreLabel.setSize(200, 70);
+		scoreLabel.setLocation(320, 200);
 		scoreLabel.setFont(new Font("±Ã¼­Ã¼", Font.PLAIN, 24));
+		scoreLabel.setHorizontalAlignment(JLabel.RIGHT);
 	}
 	
 	private void setNewRecordLabel() {
