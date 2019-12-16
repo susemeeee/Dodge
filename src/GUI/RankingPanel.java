@@ -30,15 +30,15 @@ public class RankingPanel extends JPanel {
 		GameManager.readRanking(usernameArray, highscoreArray);
 		
 		for(int i = 0; i < usernameArray.size(); ++i) {
-			userNameLabel.add(new JLabel(Integer.toString(i + 1) + "  " + usernameArray.get(i)));
-			userNameLabel.get(i + 1).setSize(100, 70);
-			userNameLabel.get(i + 1).setLocation(155, 60 * (i + 4));
+			userNameLabel.add(new JLabel(Integer.toString(i + 1) + "     " + usernameArray.get(i)));
+			userNameLabel.get(i + 1).setSize(150, 70);
+			userNameLabel.get(i + 1).setLocation(125, 50 * (i + 4));
 			userNameLabel.get(i + 1).setFont(new Font("±Ã¼­Ã¼", Font.PLAIN, 24));
 			add(userNameLabel.get(i + 1));
 			
 			scoreLabel.add(new JLabel(Integer.toString(highscoreArray.get(i))));
 			scoreLabel.get(i + 1).setSize(100, 70);
-			scoreLabel.get(i + 1).setLocation(490, 60 * (i + 4));
+			scoreLabel.get(i + 1).setLocation(490, 50 * (i + 4));
 			scoreLabel.get(i + 1).setFont(new Font("±Ã¼­Ã¼", Font.PLAIN, 24));
 			scoreLabel.get(i + 1).setHorizontalAlignment(JLabel.RIGHT);
 			add(scoreLabel.get(i + 1));
@@ -82,5 +82,6 @@ public class RankingPanel extends JPanel {
 		backButton.setSize(100,40);
 		backButton.setLocation(10, 10);
 		backButton.setFont(new Font("consolas", Font.BOLD, 24));
+		backButton.setContentAreaFilled(false);
 	}
 }

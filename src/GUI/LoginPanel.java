@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +21,7 @@ public class LoginPanel extends JPanel {
 	private JLabel gameTitleLabel = new JLabel("¶ËÇÇÇÏ±â");
 	private JLabel loginLabel = new JLabel("username : ");
 	private JTextField usernameField = new JTextField();
+	//private JButton loginButton = new JButton(new ImageIcon("gamefiles/images/loginButton.png"));
 	private JButton loginButton = new JButton("login");
 	private GameCharacter gameCharacter = new GameCharacter();
 	private PlaySound playSound = new PlaySound();
@@ -86,8 +88,9 @@ public class LoginPanel extends JPanel {
 		gameTitleLabel.setLocation(300, 100);
 		gameTitleLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 48));
 		
-		loginButton.setSize(100, 25);
-		loginButton.setLocation(550, 350);
+		loginButton.setSize(100, 29);
+		loginButton.setLocation(550, 348);
+		loginButton.setContentAreaFilled(false);
 		loginButton.setFont(new Font("consolas", Font.BOLD, 20));
 		
 		usernameField.setSize(200, 25);
