@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import core.GameCharacter;
 import core.GameManager;
+import core.PlaySound;
 
 public class RankingPanel extends JPanel {
 	private ArrayList<String> usernameArray = new ArrayList<String>();
@@ -21,6 +22,7 @@ public class RankingPanel extends JPanel {
 	private ArrayList<JLabel> scoreLabel = new ArrayList<JLabel>();
 	private JLabel rankingTitleLabel = new JLabel("·© Å·");
 	private JButton backButton = new JButton("Back");
+	private PlaySound playSound = new PlaySound();
 
 	public RankingPanel(GameCharacter gameCharacter) throws IOException {
 		setLayout(null);
@@ -45,6 +47,7 @@ public class RankingPanel extends JPanel {
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				playSound.playSound("button");
 				try {
 					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
 				} catch (IOException e1) {

@@ -4,12 +4,14 @@ import GUI.GamePanel;
 
 public class ScoreThread extends Thread {
 	GamePanel gamePanel;
+	private boolean isRunning = true;
+	
 	public ScoreThread(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 	}
 	
 	public void run() {
-		while(true) {
+		while(isRunning == true) {
 			try {
             	Thread.sleep(15);
             } 
@@ -18,6 +20,10 @@ public class ScoreThread extends Thread {
             }
 			gamePanel.setScore(1);
 		}
+	}
+	
+	public void shutdown() {
+		isRunning = false;
 	}
 	
 }

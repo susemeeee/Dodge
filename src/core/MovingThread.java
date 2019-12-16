@@ -10,6 +10,7 @@ import GUI.MainPanel;
 
 public class MovingThread extends Thread {
 	private GamePanel gamePanel;
+	private boolean isRunning = true;
 	
 	public MovingThread(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -17,7 +18,7 @@ public class MovingThread extends Thread {
 	
 	public void run() {
 		GameCharacter character = gamePanel.getGameCharacter();
-        while(true) {
+        while(isRunning == true) {
             if(gamePanel.getKeyStatus() == 1) {
                 if(gamePanel.getKeyCode() == KeyEvent.VK_LEFT) {
                     character.getCurrentPosition().x -= 1;
@@ -37,5 +38,9 @@ public class MovingThread extends Thread {
             }
         }
     }
+	
+	public void shutdown() {
+		isRunning = false;
+	}
 
 }

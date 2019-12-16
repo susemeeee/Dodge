@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import core.GameCharacter;
 import core.GameManager;
+import core.PlaySound;
 
 public class GameOverPanel extends JPanel {
 	private JButton backButton = new JButton("Back");
@@ -19,6 +20,7 @@ public class GameOverPanel extends JPanel {
 	private JLabel scoreTitleLabel = new JLabel("Score: ");
 	private JLabel scoreLabel = new JLabel();
 	private JLabel newRecordLabel = new JLabel("new Record!");
+	private PlaySound playSound = new PlaySound();
 	
 	public GameOverPanel(GameCharacter gameCharacter) throws IOException {
 		setLayout(null);
@@ -41,6 +43,7 @@ public class GameOverPanel extends JPanel {
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				playSound.playSound("button");
 				try {
 					gameCharacter.setCurrentScore(0);
 					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);

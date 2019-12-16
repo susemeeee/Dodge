@@ -4,9 +4,13 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +22,7 @@ import core.GameCharacter;
 import core.MovingThread;
 import core.RulingThread;
 import core.ScoreThread;
+import core.SoundThread;
 
 public class GamePanel extends JPanel {
 	private final int MIN_X = 0;
@@ -32,6 +37,7 @@ public class GamePanel extends JPanel {
 	private MovingThread movingThread = new MovingThread(this);
 	private RulingThread rulingThread = new RulingThread(this);
 	private ScoreThread scoreThread = new ScoreThread(this);
+	private SoundThread soundThread = new SoundThread();
 	private JLabel scoreTitle;
 	private JLabel scoreLabel;
 	private JLabel highScoreTitle;
@@ -50,6 +56,7 @@ public class GamePanel extends JPanel {
 		movingThread.start();
 		rulingThread.start();
 		scoreThread.start();
+		soundThread.start();
 
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -172,7 +179,7 @@ public class GamePanel extends JPanel {
 		scoreLabel.setText(Integer.toString(currentGameCharacter.getCurrentScore()));
 		highScoreLabel.setText(toHighScore);
 	}
-
+	
 	public void hitRuling() {
 		int characterLeft = currentGameCharacter.getCurrentPosition().x+10;
 		int characterRight = characterLeft + currentGameCharacter.getSizeRange().x;
@@ -188,9 +195,10 @@ public class GamePanel extends JPanel {
 				&& characterTop < objectBottom)
 			{
 				characterLabel.setIcon(new ImageIcon("gamefiles/images/shockwave.png"));
-				fallingThread.stop();
-				movingThread.stop();
-				scoreThread.stop();
+				fallingThread.shutdown();
+				movingThread.shutdown();
+				scoreThread.shutdown();
+				soundThread.shutdown();
 				try {
 					Thread.sleep(2000);
 					GameFrame.changePanel(GameOverPanel.class.getName(), currentGameCharacter);
@@ -200,7 +208,7 @@ public class GamePanel extends JPanel {
 				catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				rulingThread.stop();
+				rulingThread.shutdown();
 			}
 		}
 	}

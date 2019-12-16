@@ -10,11 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import core.GameCharacter;
+import core.PlaySound;
 
 public class MainPanel extends JPanel {
 	private JButton startButton = new JButton("start");
 	private JButton rankingButton = new JButton("ranking");
 	private JLabel gameTitleLabel = new JLabel("¶ËÇÇÇÏ±â");
+	private PlaySound playSound = new PlaySound();
 
 	public MainPanel(GameCharacter gameCharacter) {
 		setDefaultPanel();
@@ -23,6 +25,7 @@ public class MainPanel extends JPanel {
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				playSound.playSound("button");
 				try {
 					GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
 				} catch (IOException e1) {
@@ -34,6 +37,7 @@ public class MainPanel extends JPanel {
 		rankingButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				playSound.playSound("button");
 				try {
 					GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
 				} catch (IOException e1) {

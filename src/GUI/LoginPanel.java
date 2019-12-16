@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import core.GameCharacter;
 import core.GameManager;
+import core.PlaySound;
 
 public class LoginPanel extends JPanel {
 	private JLabel gameTitleLabel = new JLabel("똥피하기");
@@ -21,6 +22,7 @@ public class LoginPanel extends JPanel {
 	private JTextField usernameField = new JTextField();
 	private JButton loginButton = new JButton("login");
 	private GameCharacter gameCharacter = new GameCharacter();
+	private PlaySound playSound = new PlaySound();
 	
 	public LoginPanel() {
 		setDefaultPanel();
@@ -31,6 +33,8 @@ public class LoginPanel extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				String username = usernameField.getText();
 				gameCharacter.setUserName(username);
+				
+				playSound.playSound("button");
 				if(username.trim().length() == 0) {
 					System.exit(0);//임시로 프로그램 꺼놓음 나중에 조치예정 (이름 무조건 입력해야됨)
 				}
@@ -51,6 +55,7 @@ public class LoginPanel extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					playSound.playSound("button");
 					String username = usernameField.getText();
 					gameCharacter.setUserName(username);
 					if(username.trim().length() == 0) {

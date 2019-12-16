@@ -7,17 +7,16 @@ import GUI.GameOverPanel;
 import GUI.GamePanel;
 
 public class RulingThread extends Thread {
-
 	private GamePanel gamePanel;
-
+	private boolean isRunning = true;
+	
 	public RulingThread(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 	}
 
 	public void run() {
 		GameCharacter character = gamePanel.getGameCharacter();
-
-		while (true) {
+		while (isRunning == true) {
 			gamePanel.hitRuling();
 			try {
             	Thread.sleep(1);
@@ -27,5 +26,9 @@ public class RulingThread extends Thread {
             }
 		}
 
+	}
+	
+	public void shutdown() {
+		isRunning = false;
 	}
 }
