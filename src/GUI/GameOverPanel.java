@@ -30,9 +30,8 @@ public class GameOverPanel extends JPanel {
 			GameManager.saveHighScore(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
 			setNewRecordLabel();
 			add(newRecordLabel);
+			GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getHighScore());
 		}
-		
-		GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getHighScore());
 		
 		setLayout(null);
 		

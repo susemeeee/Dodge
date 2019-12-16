@@ -31,7 +31,6 @@ public class GameManager {
 			gameCharacter.setHighScore(Integer.parseInt(splitLine[1]));
 			userInfoFile.close();
 		} catch (FileNotFoundException e) {
-			System.out.println(1);
 			createUser(username);
 		}
 	}
@@ -111,7 +110,7 @@ public class GameManager {
 		RankingInfo currentUserInfo = new RankingInfo(username, highscore);
 		
 		for(int i = rankingArray.size() - 1; i >= 0; --i) {
-			if(highscore > rankingArray.get(i).getHighscore()) {
+			if((highscore > rankingArray.get(i).getHighscore())) {
 				if(i == rankingArray.size() - 1) {
 					rankingArray.add(i + 1, rankingArray.get(i));
 				}

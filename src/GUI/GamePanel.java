@@ -1,26 +1,19 @@
 package GUI;
 
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import core.FallingObject;
 import core.FallingObjectManager;
 import core.FallingObjectThread;
 import core.GameCharacter;
 import core.MovingThread;
-import core.PlaySound;
 import core.RulingThread;
 import core.ScoreThread;
 import core.SoundThread;
@@ -34,6 +27,7 @@ public class GamePanel extends JPanel {
 	private JLabel groundLabel;
 	private FallingObjectManager fallingManager = new FallingObjectManager();
 	private ArrayList<JLabel> fallingLabel = new ArrayList<JLabel>();
+	private JLabel itemLabel;
 	private FallingObjectThread fallingThread = new FallingObjectThread(this);
 	private MovingThread movingThread = new MovingThread(this);
 	private RulingThread rulingThread = new RulingThread(this);
@@ -131,6 +125,9 @@ public class GamePanel extends JPanel {
 			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
 			fallingLabel.get(i).setSize(40, 40);
 		}
+		
+		itemLabel = new JLabel(fallingManager.pickItem().getFallingObjectImage());
+		//
 	}
 
 	public void setCharacterPosition() {
@@ -181,7 +178,7 @@ public class GamePanel extends JPanel {
 		highScoreLabel.setText(toHighScore);
 	}
 	
-	public void hitRuling() {
+	public void hitRuling() {////////////////
 		int characterLeft = currentGameCharacter.getCurrentPosition().x+10;
 		int characterRight = characterLeft + currentGameCharacter.getSizeRange().x;
 		int characterTop = currentGameCharacter.getCurrentPosition().y+10;
@@ -213,5 +210,6 @@ public class GamePanel extends JPanel {
 			}
 		}
 	}
-
+	
+	
 }
