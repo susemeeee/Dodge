@@ -232,7 +232,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void itemEffect(String itemName) {
-		if(itemName.equals("core.ClearItem")) {
+		if(itemName.equals("gameobject.ClearItem")) {
 			for(int i = 0; i < fallingManager.getCurrentObjectCount(); ++i) {
 				fallingManager.getFallingObject(i).setNewObjectPosition();
 				fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
