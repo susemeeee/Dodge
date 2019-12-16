@@ -30,8 +30,7 @@ public class GameOverPanel extends JPanel {
 			add(newRecordLabel);
 		}
 		
-		//GameManager.sortRanking(gameCharacter.getHighScore());
-		//랭킹 세이브함수 작동
+		GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getHighScore());
 		
 		setLayout(null);
 		

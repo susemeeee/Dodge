@@ -44,7 +44,7 @@ public class RankingPanel extends JPanel {
 		
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				try {
 					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
 				} catch (IOException e1) {

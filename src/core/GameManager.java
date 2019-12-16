@@ -31,17 +31,18 @@ public class GameManager {
 			gameCharacter.setHighScore(Integer.parseInt(splitLine[1]));
 			userInfoFile.close();
 		} catch (FileNotFoundException e) {
+			System.out.println(1);
 			createUser(username);
 		}
 	}
 	
 	public static void createUser(String username) throws IOException {
-		File userFile = new File("gamefiles/users/" + username + ".txt");
+		String fileName = ("gamefiles/users/" + username + ".txt");
+		File userFile = new File(fileName);
 		userFile.createNewFile();
 		try {
 			BufferedWriter userInfoFile = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(userFile), "UTF8"));
 			userInfoFile.write("highscore=0");
-			userInfoFile.newLine();
 			
 			userInfoFile.flush();
 			userInfoFile.close();
@@ -52,7 +53,7 @@ public class GameManager {
 	
 	public static void readRanking(ArrayList<String> usernameArray, ArrayList<Integer> highscoreArray) throws IOException {
 		try {
-			File rankingFile = new File("gamefiles/users/Ranking.txt");
+			File rankingFile = new File("gamefiles/users/rank/Ranking.txt");
 			BufferedReader rankingBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(rankingFile),"UTF8"));
 			String fileLine = rankingBuffer.readLine();
 			String[] splitLine;
@@ -92,7 +93,46 @@ public class GameManager {
 		}
 	}
 	
-	public static void sortRanking(int highscore) {
+	public static void sortRanking(String username, int highscore) throws IOException, FileNotFoundException {
+		ArrayList<RankingInfo> rankingArray = new ArrayList<RankingInfo>();
+		File rankingFile = new File("gamefiles/users/rank/Ranking.txt");
+		BufferedReader rankingBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(rankingFile), "UTF8"));
+		String fileLine = rankingBuffer.readLine();
+		String[] splitLine;
 		
-	}//use GameOverPanel
+		while(fileLine != null) {
+			splitLine = fileLine.split("=");
+			rankingArray.add(new RankingInfo(splitLine[0], Integer.parseInt(splitLine[1])));
+			fileLine = rankingBuffer.readLine();
+		}
+		
+		rankingBuffer.close();
+		
+		RankingInfo currentUserInfo = new RankingInfo(username, highscore);
+		
+		for(int i = rankingArray.size() - 1; i >= 0; --i) {
+			if(highscore > rankingArray.get(i).getHighscore()) {
+				if(i == rankingArray.size() - 1) {
+					rankingArray.add(i + 1, rankingArray.get(i));
+				}
+				else {
+					rankingArray.set(i + 1, rankingArray.get(i));
+				}
+				
+				rankingArray.set(i, currentUserInfo);
+			}
+		}
+		
+		BufferedWriter rankingWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(rankingFile), "UTF8"));
+		StringBuilder rankingFileBuilder = new StringBuilder();
+		
+		for(int i = 0; i < 5; ++i) {
+			rankingFileBuilder.append(rankingArray.get(i).getUserName() + "=" + Integer.toString(rankingArray.get(i).getHighscore()));
+			rankingFileBuilder.append("\n");
+		}
+		rankingWriter.append(rankingFileBuilder);
+		
+		rankingWriter.flush();
+		rankingWriter.close();
+	}
 }
