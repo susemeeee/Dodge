@@ -76,7 +76,7 @@ public class GameManager {
 			File userFile = new File(fileName);
 			BufferedReader userBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(userFile), "UTF8"));
 			StringBuilder newUserInfo = new StringBuilder();
-			String fileLine = userBuffer.readLine();
+			//String fileLine = userBuffer.readLine();
 		
 			newUserInfo.append("highscore=" + Integer.toString(highscore));
 			

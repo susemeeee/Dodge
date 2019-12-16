@@ -1,9 +1,5 @@
 package gamethread;
 
-import java.awt.Point;
-
-import GUI.GameFrame;
-import GUI.GameOverPanel;
 import GUI.GamePanel;
 import gameobject.GameCharacter;
 

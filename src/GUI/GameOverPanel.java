@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,9 +29,8 @@ public class GameOverPanel extends JPanel {
 			GameManager.saveHighScore(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
 			setNewRecordLabel();
 			add(newRecordLabel);
-			GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getHighScore());
 		}
-		
+		GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
 		setLayout(null);
 		
 		backButton.setSize(100,40);

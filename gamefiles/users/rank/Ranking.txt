@@ -1,5 +1,5 @@
 aaa=10000
 bbb=5000
-admin=4234
 ccc=3000
-admin=2070
+ddd=2000
+admin=1968
