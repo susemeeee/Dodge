@@ -2,4 +2,4 @@ aaa=10000
 bbb=5000
 ccc=3000
 ddd=2000
-admin=1968
+admin=160
