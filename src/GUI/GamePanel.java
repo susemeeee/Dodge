@@ -20,6 +20,7 @@ import core.FallingObjectManager;
 import core.FallingObjectThread;
 import core.GameCharacter;
 import core.MovingThread;
+import core.PlaySound;
 import core.RulingThread;
 import core.ScoreThread;
 import core.SoundThread;

@@ -8,17 +8,20 @@ import javax.sound.sampled.Clip;
 
 public class PlaySound {
 	private Clip clip;
+	AudioInputStream sound;
+	String fileName;
 	
 	public void playSound(String name) {
 		try {
-			String fileName = new String("gamefiles/sounds/" + name + ".wav");
-			AudioInputStream sound = AudioSystem.getAudioInputStream(new File(fileName));
+			fileName = new String("gamefiles/sounds/" + name + ".wav");
+			sound = AudioSystem.getAudioInputStream(new File(fileName));
 			clip = AudioSystem.getClip();
 			clip.stop();
 			clip.open(sound);
 			clip.start();
 		}
 		catch(Exception e) {
+			System.out.println(11111111);
 			e.printStackTrace();
 		}
 		
@@ -27,4 +30,5 @@ public class PlaySound {
 	public void stopSound() {
 		clip.stop();
 	}
+	
 }

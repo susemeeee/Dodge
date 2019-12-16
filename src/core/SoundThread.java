@@ -18,6 +18,7 @@ public class SoundThread extends Thread {
 	public void shutdown() {
 		isRunning = false;
 		playSound.stopSound();
+		playSound.playSound("explosion");
 	}
 
 }
