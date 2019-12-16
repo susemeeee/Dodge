@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import core.FallingObject;
 import core.FallingObjectManager;
 import core.FallingObjectThread;
 import core.GameCharacter;
@@ -27,6 +28,7 @@ public class GamePanel extends JPanel {
 	private JLabel groundLabel;
 	private FallingObjectManager fallingManager = new FallingObjectManager();
 	private ArrayList<JLabel> fallingLabel = new ArrayList<JLabel>();
+	private FallingObject currentItem = fallingManager.pickItem();
 	private JLabel itemLabel;
 	private FallingObjectThread fallingThread = new FallingObjectThread(this);
 	private MovingThread movingThread = new MovingThread(this);
@@ -83,6 +85,7 @@ public class GamePanel extends JPanel {
 		add(scoreLabel);
 		add(highScoreTitle);
 		add(highScoreLabel);
+		add(itemLabel);
 	}
 
 	private void setDefaultpanel(GameCharacter gameCharacter) {
@@ -126,8 +129,9 @@ public class GamePanel extends JPanel {
 			fallingLabel.get(i).setSize(40, 40);
 		}
 		
-		itemLabel = new JLabel(fallingManager.pickItem().getFallingObjectImage());
-		//
+		itemLabel = new JLabel(currentItem.getFallingObjectImage());
+		itemLabel.setLocation(currentItem.getCurrentPosition());
+		itemLabel.setSize(40, 40);
 	}
 
 	public void setCharacterPosition() {
@@ -144,9 +148,12 @@ public class GamePanel extends JPanel {
 
 	public void setFallingObjectPosition() {
 		for (int i = 0; i < fallingManager.getCurrentObjectCount(); i++) {
-			fallingManager.getFallingObject(i).setCurrentPosition(1);
+			fallingManager.getFallingObject(i).objectFalling(1);
 			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
 		}
+		
+		currentItem.setItemPosition(1);
+		itemLabel.setLocation(currentItem.getCurrentPosition());
 	}
 	
 	public int getKeyStatus() {
@@ -178,7 +185,7 @@ public class GamePanel extends JPanel {
 		highScoreLabel.setText(toHighScore);
 	}
 	
-	public void hitRuling() {////////////////
+	public void hitRuling() {
 		int characterLeft = currentGameCharacter.getCurrentPosition().x+10;
 		int characterRight = characterLeft + currentGameCharacter.getSizeRange().x;
 		int characterTop = currentGameCharacter.getCurrentPosition().y+10;
@@ -209,7 +216,28 @@ public class GamePanel extends JPanel {
 				rulingThread.shutdown();
 			}
 		}
+		
+		int itemLeft = currentItem.getCurrentPosition().x + 10;
+		int itemRight = currentItem.getCurrentPosition().x + currentItem.getSizeRange().x;
+		int itemBottom = currentItem.getCurrentPosition().y + currentItem.getSizeRange().y + 10;
+		
+		
+		if(((characterRight > itemLeft && characterLeft < itemLeft)
+				|| (characterRight > itemRight && characterLeft < itemRight))
+			&& characterTop < itemBottom) {
+			itemEffect(currentItem.getClass().getName());
+			currentItem = fallingManager.pickItem();
+		}
+		
 	}
 	
-	
+	public void itemEffect(String itemName) {
+		if(itemName.equals("core.ClearItem")) {
+			for(int i = 0; i < fallingManager.getCurrentObjectCount(); ++i) {
+				fallingManager.getFallingObject(i).setNewObjectPosition();
+				fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
+			}
+		}
+		
+	}//앞으로 다른아이템 효과도 여기서
 }

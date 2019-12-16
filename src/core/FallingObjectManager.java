@@ -31,6 +31,8 @@ public class FallingObjectManager {
 	}
 	
 	public FallingObject pickItem() {
-		return itemList.get(0);
+		FallingObject item = itemList.get(0);
+		item.setNewItemPosition();
+		return item;
 	}//아이템 여러개 구현 시 이거 수정
 }
