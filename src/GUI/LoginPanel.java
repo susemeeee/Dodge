@@ -28,13 +28,14 @@ public class LoginPanel extends JPanel {
 
 		loginButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				String username = usernameField.getText();
+				gameCharacter.setUserName(username);
 				if(username.trim().length() == 0) {
 					System.exit(0);//임시로 프로그램 꺼놓음 나중에 조치예정 (이름 무조건 입력해야됨)
 				}
 				try {
-					GameManager.loadUser(username, gameCharacter);
+					GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -51,11 +52,12 @@ public class LoginPanel extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					String username = usernameField.getText();
+					gameCharacter.setUserName(username);
 					if(username.trim().length() == 0) {
 						System.exit(0);//임시로 프로그램 꺼놓음 나중에 조치예정 (이름 무조건 입력해야됨)
 					}
 					try {
-						GameManager.loadUser(username, gameCharacter);
+						GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}

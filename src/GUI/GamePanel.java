@@ -1,8 +1,10 @@
 package GUI;
 
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -15,6 +17,7 @@ import core.FallingObjectThread;
 import core.GameCharacter;
 import core.MovingThread;
 import core.RulingThread;
+import core.ScoreThread;
 
 public class GamePanel extends JPanel {
 	private final int MIN_X = 0;
@@ -28,6 +31,11 @@ public class GamePanel extends JPanel {
 	private FallingObjectThread fallingThread = new FallingObjectThread(this);
 	private MovingThread movingThread = new MovingThread(this);
 	private RulingThread rulingThread = new RulingThread(this);
+	private ScoreThread scoreThread = new ScoreThread(this);
+	private JLabel scoreTitle;
+	private JLabel scoreLabel;
+	private JLabel highScoreTitle;
+	private JLabel highScoreLabel;
 	private int fallingObjectNum = 30;
 	private int isKeyPressed = 0;
 	private int keycode = 0;
@@ -41,6 +49,7 @@ public class GamePanel extends JPanel {
 		fallingThread.start();
 		movingThread.start();
 		rulingThread.start();
+		scoreThread.start();
 
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -68,6 +77,10 @@ public class GamePanel extends JPanel {
 
 		add(characterLabel);
 		add(groundLabel);
+		add(scoreTitle);
+		add(scoreLabel);
+		add(highScoreTitle);
+		add(highScoreLabel);
 	}
 
 	private void setDefaultpanel(GameCharacter gameCharacter) {
@@ -78,6 +91,30 @@ public class GamePanel extends JPanel {
 		groundLabel = new JLabel(groundIcon);
 		groundLabel.setLocation(0, 525);
 		groundLabel.setSize(800, 50);
+		
+		scoreTitle = new JLabel("Score : ");
+		scoreTitle.setLocation(550,20);
+		scoreTitle.setSize(120,50);
+		scoreTitle.setFont(new Font("Consolas", Font.BOLD, 25));
+		scoreTitle.setHorizontalAlignment(JLabel.CENTER);
+		
+		highScoreTitle = new JLabel("HighScore : ");
+		highScoreTitle.setLocation(482,50);
+		highScoreTitle.setSize(200,50);
+		highScoreTitle.setFont(new Font("Consolas", Font.BOLD, 25));
+		highScoreTitle.setHorizontalAlignment(JLabel.CENTER);
+		
+		scoreLabel = new JLabel(Integer.toString(gameCharacter.getCurrentScore()));
+		scoreLabel.setLocation(650,20);
+		scoreLabel.setSize(100,50);
+		scoreLabel.setFont(new Font("Consolas", Font.BOLD, 25));
+		scoreLabel.setHorizontalAlignment(JLabel.RIGHT);
+		
+		highScoreLabel = new JLabel(Integer.toString(gameCharacter.getHighScore()));
+		highScoreLabel.setLocation(650,50);
+		highScoreLabel.setSize(100,50);
+		highScoreLabel.setFont(new Font("Consolas", Font.BOLD, 25));
+		highScoreLabel.setHorizontalAlignment(JLabel.RIGHT);
 
 		for (int i = 0; i < fallingObjectNum; i++) {
 			fallingManager.addFallingObject(i * (-50));
@@ -106,7 +143,7 @@ public class GamePanel extends JPanel {
 			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
 		}
 	}
-
+	
 	public int getKeyStatus() {
 		return isKeyPressed;
 	}
@@ -122,6 +159,19 @@ public class GamePanel extends JPanel {
 	public FallingObjectManager getFallingManager() {
 		return fallingManager;
 	}
+	
+	public void setScore(int num) {
+		currentGameCharacter.setCurrentScore(currentGameCharacter.getCurrentScore() + num);
+		String toHighScore;
+		if(currentGameCharacter.getCurrentScore() - currentGameCharacter.getHighScore() > 0) {
+			toHighScore = Integer.toString(currentGameCharacter.getCurrentScore());
+		}
+		else {
+			toHighScore = Integer.toString(currentGameCharacter.getHighScore());
+		}
+		scoreLabel.setText(Integer.toString(currentGameCharacter.getCurrentScore()));
+		highScoreLabel.setText(toHighScore);
+	}
 
 	public void hitRuling() {
 		int characterLeft = currentGameCharacter.getCurrentPosition().x+10;
@@ -129,20 +179,28 @@ public class GamePanel extends JPanel {
 		int characterTop = currentGameCharacter.getCurrentPosition().y+10;
 		
 		for (int i = 0; i < fallingManager.getCurrentObjectCount(); i++) {
-			int objectLeft = fallingManager.getFallingObject(i).getCurrentPosition().x+5;
+			int objectLeft = fallingManager.getFallingObject(i).getCurrentPosition().x+10;
 			int objectRight = objectLeft + fallingManager.getFallingObject(i).getSizeRange().x;
-			int objectBottom = fallingManager.getFallingObject(i).getCurrentPosition().y + fallingManager.getFallingObject(i).getSizeRange().y;
+			int objectBottom = fallingManager.getFallingObject(i).getCurrentPosition().y + fallingManager.getFallingObject(i).getSizeRange().y+10;
 			
 			if (((characterRight > objectLeft && characterLeft < objectLeft)
 					|| (characterRight > objectRight && characterLeft < objectRight))
 				&& characterTop < objectBottom)
 			{
-				fallingLabel.get(i).setIcon(new ImageIcon("gamefiles/images/obstacle2.png"));
-				//GameFrame.changePanel(GameOverPanel.class.getName(), currentGameCharacter);
-				//return;
-			}
-			if(fallingManager.getFallingObject(i).getCurrentPosition().y == -250) {
-				fallingLabel.get(i).setIcon(new ImageIcon("gamefiles/images/obstacle1.png"));
+				characterLabel.setIcon(new ImageIcon("gamefiles/images/shockwave.png"));
+				fallingThread.stop();
+				movingThread.stop();
+				scoreThread.stop();
+				try {
+					Thread.sleep(2000);
+					GameFrame.changePanel(GameOverPanel.class.getName(), currentGameCharacter);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				rulingThread.stop();
 			}
 		}
 	}

@@ -52,8 +52,8 @@ public class GameManager {
 	
 	public static void readRanking(ArrayList<String> usernameArray, ArrayList<Integer> highscoreArray) throws IOException {
 		try {
-			File rankeingFile = new File("gamefiles/users/Ranking.txt");
-			BufferedReader rankingBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(rankeingFile),"UTF8"));
+			File rankingFile = new File("gamefiles/users/Ranking.txt");
+			BufferedReader rankingBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(rankingFile),"UTF8"));
 			String fileLine = rankingBuffer.readLine();
 			String[] splitLine;
 			
@@ -63,10 +63,34 @@ public class GameManager {
 				highscoreArray.add(Integer.parseInt(splitLine[1]));
 				fileLine = rankingBuffer.readLine();
 			}
+			
+			rankingBuffer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	}//use RankingPanel
+	}
+	
+	public static void saveHighScore(String username, int highscore) throws IOException {
+		try {
+			String fileName = "gamefiles/users/" + username + ".txt";
+			File userFile = new File(fileName);
+			BufferedReader userBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(userFile), "UTF8"));
+			StringBuilder newUserInfo = new StringBuilder();
+			String fileLine = userBuffer.readLine();
+		
+			newUserInfo.append("highscore=" + Integer.toString(highscore));
+			
+			userBuffer.close();
+			
+			BufferedWriter userWritter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(userFile), "UTF8"));
+			userWritter.append(newUserInfo);
+			userWritter.flush();
+			userWritter.close();
+			//돈 등 다른기능 만들거면 수정해야됨
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public static void sortRanking(int highscore) {
 		

@@ -22,7 +22,7 @@ public class MainPanel extends JPanel {
 
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				try {
 					GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
 				} catch (IOException e1) {
@@ -33,7 +33,7 @@ public class MainPanel extends JPanel {
 
 		rankingButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				try {
 					GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
 				} catch (IOException e1) {
