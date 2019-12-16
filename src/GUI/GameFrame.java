@@ -38,7 +38,7 @@ public class GameFrame extends JFrame{
 	        instance.setContentPane(new RankingPanel(gameCharacter));
 		}
 		else if(panelName.equals(GameOverPanel.class.getName())) {
-			instance.setContentPane(new GameOverPanel());//¾ÆÁ÷ ¾È¸¸µë
+			instance.setContentPane(new GameOverPanel(gameCharacter));//¾ÆÁ÷ ¾È¸¸µë
 		}
 		
         instance.getContentPane().revalidate();
