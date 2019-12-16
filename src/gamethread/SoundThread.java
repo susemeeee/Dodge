@@ -1,4 +1,6 @@
-package core;
+package gamethread;
+
+import core.PlaySound;
 
 public class SoundThread extends Thread {
 	private PlaySound playSound = new PlaySound();

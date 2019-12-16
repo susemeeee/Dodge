@@ -9,8 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import core.GameCharacter;
 import core.PlaySound;
+import gameobject.GameCharacter;
 
 public class MainPanel extends JPanel {
 	private JButton startButton = new JButton("start");

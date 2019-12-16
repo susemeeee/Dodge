@@ -1,4 +1,4 @@
-package core;
+package gamethread;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import GUI.GameFrame;
 import GUI.GameOverPanel;
 import GUI.GamePanel;
 import GUI.MainPanel;
+import gameobject.GameCharacter;
 
 public class MovingThread extends Thread {
 	private GamePanel gamePanel;

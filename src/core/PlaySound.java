@@ -21,7 +21,6 @@ public class PlaySound {
 			clip.start();
 		}
 		catch(Exception e) {
-			System.out.println(11111111);
 			e.printStackTrace();
 		}
 		

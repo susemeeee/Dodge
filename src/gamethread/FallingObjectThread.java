@@ -1,4 +1,4 @@
-package core;
+package gamethread;
 
 import GUI.GamePanel;
 

@@ -10,14 +10,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import core.FallingObject;
 import core.FallingObjectManager;
-import core.FallingObjectThread;
-import core.GameCharacter;
-import core.MovingThread;
-import core.RulingThread;
-import core.ScoreThread;
-import core.SoundThread;
+import gameobject.FallingObject;
+import gameobject.GameCharacter;
+import gamethread.FallingObjectThread;
+import gamethread.MovingThread;
+import gamethread.RulingThread;
+import gamethread.ScoreThread;
+import gamethread.SoundThread;
 
 public class GamePanel extends JPanel {
 	private final int MIN_X = 0;

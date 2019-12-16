@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import gameobject.ClearItem;
+import gameobject.FallingObject;
+import gameobject.ObstacleObject;
+
 public class FallingObjectManager {
 	private ArrayList<FallingObject> objectList = new ArrayList<FallingObject>();
 	private ArrayList<FallingObject> itemList = new ArrayList<FallingObject>();

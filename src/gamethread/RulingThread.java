@@ -1,10 +1,11 @@
-package core;
+package gamethread;
 
 import java.awt.Point;
 
 import GUI.GameFrame;
 import GUI.GameOverPanel;
 import GUI.GamePanel;
+import gameobject.GameCharacter;
 
 public class RulingThread extends Thread {
 	private GamePanel gamePanel;

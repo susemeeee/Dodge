@@ -11,9 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import core.GameCharacter;
 import core.GameManager;
 import core.PlaySound;
+import gameobject.GameCharacter;
 
 public class RankingPanel extends JPanel {
 	private ArrayList<String> usernameArray = new ArrayList<String>();

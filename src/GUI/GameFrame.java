@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import core.GameCharacter;
+import gameobject.GameCharacter;
 
 public class GameFrame extends JFrame{
 	private static GameFrame instance;

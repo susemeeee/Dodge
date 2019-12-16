@@ -12,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import core.GameCharacter;
 import core.GameManager;
 import core.PlaySound;
+import gameobject.GameCharacter;
 
 public class LoginPanel extends JPanel {
 	private JLabel gameTitleLabel = new JLabel("¶ËÇÇÇÏ±â");
