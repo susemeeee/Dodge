@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class GameCharacter {
 	private Point currentPosition;
 	private Point sizeRange;
-	private ImageIcon characterImage = new ImageIcon("gamefiles/images/gamecharacter2.png");
+	private ImageIcon characterImage = new ImageIcon("gamefiles/images/gamecharacter.png");
 	private int highScore;
 	private int currentScore;
 	private String username;

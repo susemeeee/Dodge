@@ -19,8 +19,8 @@ public class MainPanel extends JPanel {
 	private JButton rankingButton = new JButton("ranking");
 	private JLabel gameTitleLabel1 = new JLabel("Dodge");
 	private JLabel gameTitleLabel2 = new JLabel("Youtube");
-	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle2.png"));
-	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter2.png"));
+	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle.png"));
+	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter.png"));
 	private JLabel moveEffectLabel = new JLabel("(((       (((");
 	private PlaySound playSound = new PlaySound();
 

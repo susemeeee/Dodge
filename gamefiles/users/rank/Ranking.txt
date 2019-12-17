@@ -1,5 +1,5 @@
-admin=13001
-aaa=10000
-admin=7073
-admin=6786
-admin=6122
+aaa=1000000
+bbb=100000
+ccc=10000
+ddd=5000
+eee=1000

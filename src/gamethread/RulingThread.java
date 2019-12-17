@@ -1,7 +1,6 @@
 package gamethread;
 
 import GUI.GamePanel;
-import gameobject.GameCharacter;
 
 public class RulingThread extends Thread {
 	private GamePanel gamePanel;

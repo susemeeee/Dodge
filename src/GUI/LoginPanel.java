@@ -23,8 +23,8 @@ public class LoginPanel extends JPanel {
 	private JLabel gameTitleLabel1 = new JLabel("Dodge");
 	private JLabel gameTitleLabel2 = new JLabel("Youtube");
 	private JLabel loginLabel = new JLabel("username : ");
-	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle2.png"));
-	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter2.png"));
+	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle.png"));
+	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter.png"));
 	private JLabel moveEffectLabel = new JLabel("(((       (((");
 	private JTextField usernameField = new JTextField();
 	private JButton loginButton = new JButton("login");

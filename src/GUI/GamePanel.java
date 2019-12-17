@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class GamePanel extends JPanel {
 	private JLabel groundLabel;
 	private FallingObjectManager fallingManager = new FallingObjectManager();
 	private ArrayList<JLabel> fallingLabel = new ArrayList<JLabel>();
+	private ArrayList<JLabel> effectLabel = new ArrayList<JLabel>();
 	private FallingObject currentItem = fallingManager.pickItem();
 	private JLabel itemLabel;
 	private FallingObjectThread fallingThread = new FallingObjectThread(this);
@@ -44,11 +46,14 @@ public class GamePanel extends JPanel {
 	private JLabel scoreLabel;
 	private JLabel highScoreTitle;
 	private JLabel highScoreLabel;
+	private JLabel randomScoreLabel;
 	private int fallingObjectNum = 30;
 	private int isKeyPressed = 0;
 	private int keycode = 0;
 	private int fallingSpeed = 0;  // 0 = defalut, 1 = slow, 2 = fast
 	private int durationTime = 0;  // 아이템 효과 지속시간
+	private int randomScore = 0; // default = 0, eatItem => random number
+	private boolean isEffectOn = false;
 
 	public GamePanel(GameCharacter gameCharacter) {
 		this.currentGameCharacter = gameCharacter;
@@ -66,7 +71,7 @@ public class GamePanel extends JPanel {
 
 		addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {// ?
+			public void keyPressed(KeyEvent e) {
 				keycode = e.getKeyCode();
 				if (keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT) {
 					isKeyPressed = 1;
@@ -74,7 +79,7 @@ public class GamePanel extends JPanel {
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) {// ?
+			public void keyReleased(KeyEvent e) {
 				int releasedKeycode = e.getKeyCode();
 				if (keycode == KeyEvent.VK_LEFT || keycode == KeyEvent.VK_RIGHT) {
 					if (releasedKeycode != keycode)
@@ -86,6 +91,7 @@ public class GamePanel extends JPanel {
 
 		for (int i = 0; i < fallingObjectNum; i++) {
 			add(fallingLabel.get(i));
+			add(effectLabel.get(i));
 		}
 
 		add(characterLabel);
@@ -95,6 +101,7 @@ public class GamePanel extends JPanel {
 		add(highScoreTitle);
 		add(highScoreLabel);
 		add(itemLabel);
+		add(randomScoreLabel);
 	}
 
 	private void setDefaultpanel(GameCharacter gameCharacter) {
@@ -136,11 +143,21 @@ public class GamePanel extends JPanel {
 			fallingLabel.add(new JLabel(fallingManager.getFallingObjectImage(i)));
 			fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
 			fallingLabel.get(i).setSize(40, 40);
+			
+			effectLabel.add(new JLabel(new ImageIcon("gamefiles/images/sparkleeffect.png")));
+			effectLabel.get(i).setLocation(0, - 200);
+			effectLabel.get(i).setSize(40, 40);
 		}
 		
 		itemLabel = new JLabel(currentItem.getFallingObjectImage());
 		itemLabel.setLocation(currentItem.getCurrentPosition());
 		itemLabel.setSize(40, 40);
+		
+		randomScoreLabel = new JLabel(" ");
+		randomScoreLabel.setLocation(0, -200);
+		randomScoreLabel.setSize(100,50);
+		randomScoreLabel.setFont(new Font("Consolas", Font.BOLD, 15));
+		
 	}
 
 	public void setCharacterPosition() {
@@ -180,6 +197,10 @@ public class GamePanel extends JPanel {
 	public JLabel getGameCharacterLabel() {
 		return characterLabel;
 	}
+	
+	public ArrayList<JLabel> getEffectLabel() {
+		return effectLabel;
+	}
 
 	public FallingObjectManager getFallingManager() {
 		return fallingManager;
@@ -199,11 +220,18 @@ public class GamePanel extends JPanel {
 	
 	public void setDurationTime() {
 		durationTime++;
-		System.out.println(durationTime);
 	}
 	
 	public void resetDurationTime() {
 		durationTime = 0;
+	}
+	
+	public int getRandomScore() {
+		return randomScore;
+	}
+	
+	public void resetRandomScore() {
+		randomScore = 0;
 	}
 	
 	public void setScore(int num) {
@@ -217,6 +245,22 @@ public class GamePanel extends JPanel {
 		}
 		scoreLabel.setText(Integer.toString(currentGameCharacter.getCurrentScore()));
 		highScoreLabel.setText(toHighScore);
+	}
+	
+	public void setRandomScoreVisible(boolean isVisible) {
+		randomScoreLabel.setVisible(isVisible);
+	}
+	
+	public void setEffectVisible(boolean isVisible) {
+		isEffectOn = isVisible;
+		for(int i = 0; i<effectLabel.size(); i++) {
+			effectLabel.get(i).setLocation(fallingLabel.get(i).getLocation());
+			effectLabel.get(i).setVisible(isVisible);
+		}
+	}
+	
+	public boolean getIsEffectOn() {
+		return isEffectOn;
 	}
 	
 	public void hitRuling() {
@@ -272,6 +316,7 @@ public class GamePanel extends JPanel {
 	
 	public void itemEffect(String itemName) {
 		if(itemName.equals("gameobject.ClearItem")) {
+			setEffectVisible(true);
 			for(int i = 0; i < fallingManager.getCurrentObjectCount(); ++i) {
 				fallingManager.getFallingObject(i).setNewObjectPosition();
 				fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
@@ -286,7 +331,16 @@ public class GamePanel extends JPanel {
 		}
 		
 		if(itemName.equals("gameobject.RandomScoreItem")) {
-			currentGameCharacter.setCurrentScore(currentGameCharacter.getCurrentScore() + ThreadLocalRandom.current().nextInt(-1000, 1001));
+			randomScore = ThreadLocalRandom.current().nextInt(-1000, 1001);
+			Point eatPoint = currentGameCharacter.getCurrentPosition();
+			currentGameCharacter.setCurrentScore(currentGameCharacter.getCurrentScore() + randomScore);
+			if(randomScore > 0) {
+				randomScoreLabel.setText("+" + Integer.toString(randomScore));
+			}
+			else {
+				randomScoreLabel.setText(Integer.toString(randomScore));
+			}
+			randomScoreLabel.setLocation(eatPoint.x, eatPoint.y-50);
 		}
 		
 		if(itemName.equals("gameobject.InvincibleItem")) {
