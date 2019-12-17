@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -52,6 +53,7 @@ public class GamePanel extends JPanel {
 	public GamePanel(GameCharacter gameCharacter) {
 		this.currentGameCharacter = gameCharacter;
 		setLayout(null);
+		setBackground(Color.WHITE);
 
 		setDefaultpanel(gameCharacter);
 

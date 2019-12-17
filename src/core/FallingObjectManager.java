@@ -42,8 +42,7 @@ public class FallingObjectManager {
 	}
 	
 	public FallingObject pickItem() {
-		//FallingObject item = itemList.get(ThreadLocalRandom.current().nextInt(0, itemList.size()));
-		FallingObject item = itemList.get(0);
+		FallingObject item = itemList.get(ThreadLocalRandom.current().nextInt(0, itemList.size()));
 		item.setNewItemPosition();
 		return item;
 	}

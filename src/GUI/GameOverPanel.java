@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,6 +31,7 @@ public class GameOverPanel extends JPanel {
 	public GameOverPanel(GameCharacter gameCharacter) throws IOException {
 		setLayout(null);
 		setDefaultPanel(gameCharacter);
+		setBackground(Color.WHITE);
 		
 		setLayout(null);
 		

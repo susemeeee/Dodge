@@ -34,6 +34,7 @@ public class LoginPanel extends JPanel {
 	public LoginPanel() {
 		setDefaultPanel();
 		setLayout(null);
+		setBackground(Color.WHITE);
 
 		loginButton.addMouseListener(new MouseAdapter() {
 			@Override

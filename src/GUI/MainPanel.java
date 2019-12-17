@@ -27,6 +27,7 @@ public class MainPanel extends JPanel {
 	public MainPanel(GameCharacter gameCharacter) {
 		setDefaultPanel();
 		setLayout(null);
+		setBackground(Color.WHITE);
 
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override

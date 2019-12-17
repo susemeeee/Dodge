@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,6 +27,7 @@ public class RankingPanel extends JPanel {
 	public RankingPanel(GameCharacter gameCharacter) throws IOException {
 		setLayout(null);
 		setDefaultPanel();
+		setBackground(Color.WHITE);
 		GameManager.readRanking(usernameArray, highscoreArray);
 		
 		for(int i = 0; i < usernameArray.size(); ++i) {

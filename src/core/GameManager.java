@@ -76,7 +76,6 @@ public class GameManager {
 			File userFile = new File(fileName);
 			BufferedReader userBuffer = new BufferedReader(new InputStreamReader(new FileInputStream(userFile), "UTF8"));
 			StringBuilder newUserInfo = new StringBuilder();
-			//String fileLine = userBuffer.readLine();
 		
 			newUserInfo.append("highscore=" + Integer.toString(highscore));
 			
@@ -86,7 +85,6 @@ public class GameManager {
 			userWritter.append(newUserInfo);
 			userWritter.flush();
 			userWritter.close();
-			//돈 등 다른기능 만들거면 수정해야됨
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
