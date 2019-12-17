@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import gameobject.ClearItem;
 import gameobject.FallingObject;
 import gameobject.FastItem;
+import gameobject.InvincibleItem;
 import gameobject.ObstacleObject;
 import gameobject.RandomScoreItem;
 import gameobject.SlowItem;
@@ -22,6 +23,7 @@ public class FallingObjectManager {
 		itemList.add(new RandomScoreItem());
 		itemList.add(new SlowItem());
 		itemList.add(new FastItem());
+		itemList.add(new InvincibleItem());
 	}
 	
 	public int getCurrentObjectCount() {

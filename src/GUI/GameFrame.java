@@ -12,7 +12,7 @@ public class GameFrame extends JFrame{
 	private static GameFrame instance;
 	
 	public GameFrame() {
-		setTitle("¶ËÇÇÇÏ±â");
+		setTitle("Dodge Youtube");
 		setSize(800, 600);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +39,7 @@ public class GameFrame extends JFrame{
 	        instance.setContentPane(new RankingPanel(gameCharacter));
 		}
 		else if(panelName.equals(GameOverPanel.class.getName())) {
-			instance.setContentPane(new GameOverPanel(gameCharacter));//¾ÆÁ÷ ¾È¸¸µë
+			instance.setContentPane(new GameOverPanel(gameCharacter));//ï¿½ï¿½ï¿½ï¿½ ï¿½È¸ï¿½ï¿½ï¿½
 		}
 		
         instance.getContentPane().revalidate();

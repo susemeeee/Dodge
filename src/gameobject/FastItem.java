@@ -9,6 +9,6 @@ public class FastItem extends FallingObject {
 	public FastItem() {
 		fallingObjectImage = new ImageIcon("gamefiles/images/fastitem.png");
 		currentPosition = new Point(ThreadLocalRandom.current().nextInt(0, 800), ThreadLocalRandom.current().nextInt(-5000, -2000));
-		sizeRange = new Point(20, 20);
+		sizeRange = new Point(30, 30);
 	}
 }

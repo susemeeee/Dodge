@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -44,17 +44,19 @@ public class LoginPanel extends JPanel {
 				
 				playSound.playSound("button");
 				if(username.trim().length() == 0) {
-					System.exit(0);//임시로 프로그램 꺼놓음 나중에 조치예정 (이름 무조건 입력해야됨)
+					int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
+					
+					if(result != JOptionPane.OK_OPTION) {
+						System.exit(0);
+					}
 				}
-				try {
-					GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				try {
-					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				else {
+					try {
+						GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
+						GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -63,21 +65,24 @@ public class LoginPanel extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					playSound.playSound("button");
 					String username = usernameField.getText();
 					gameCharacter.setUserName(username);
+					
+					playSound.playSound("button");
 					if(username.trim().length() == 0) {
-						System.exit(0);//임시로 프로그램 꺼놓음 나중에 조치예정 (이름 무조건 입력해야됨)
+						int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
+						
+						if(result != JOptionPane.OK_OPTION) {
+							System.exit(0);
+						}
 					}
-					try {
-						GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					try {
-						GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-					} catch (IOException e1) {
-						e1.printStackTrace();
+					else {
+						try {
+							GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
+							GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
 					}
 				}
 			}
