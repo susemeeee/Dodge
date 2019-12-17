@@ -1,6 +1,7 @@
 package gameobject;
 
 import java.awt.Point;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.ImageIcon;
 
@@ -24,13 +25,13 @@ public class FallingObject {
 	public void objectFalling(int fallHeight) {
 		currentPosition.y += fallHeight;
 		if(currentPosition.y > 525) {
-			currentPosition.x = (int)(Math.random()*800);
+			currentPosition.x = ThreadLocalRandom.current().nextInt(0, 800);
 			currentPosition.y = -250;
 		}
 	}
 	
 	public void setNewObjectPosition() {
-		currentPosition.x = (int)(Math.random()*800);
+		currentPosition.x = ThreadLocalRandom.current().nextInt(0, 800);
 		currentPosition.y -= 850;
 	}
 	
@@ -42,7 +43,7 @@ public class FallingObject {
 	}
 	
 	public void setNewItemPosition() {
-		currentPosition.x = (int)(Math.random() * 800);
-		currentPosition.y = (int)(Math.random() * (-3000) - 2000);
+		currentPosition.x = ThreadLocalRandom.current().nextInt(0, 800);
+		currentPosition.y = ThreadLocalRandom.current().nextInt(-5000, -2000);
 	}
 }

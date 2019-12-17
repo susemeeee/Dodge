@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.crypto.spec.GCMParameterSpec;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -146,6 +145,5 @@ public class GameOverPanel extends JPanel {
 	private void rouletteScore(GameCharacter gameCharacter) {
 		double magnification = ThreadLocalRandom.current().nextDouble(0.4, 1.6);
 		gameCharacter.setCurrentScore((int)(gameCharacter.getCurrentScore() * magnification));
-		System.out.println(gameCharacter.getCurrentScore());
 	}
 }

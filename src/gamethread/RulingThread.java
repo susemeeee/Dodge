@@ -12,7 +12,6 @@ public class RulingThread extends Thread {
 	}
 
 	public void run() {
-		GameCharacter character = gamePanel.getGameCharacter();
 		while (isRunning == true) {
 			gamePanel.hitRuling();
 			try {

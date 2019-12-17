@@ -1,12 +1,14 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.ImageIcon;
 
 import gameobject.ClearItem;
 import gameobject.FallingObject;
 import gameobject.ObstacleObject;
+import gameobject.RandomScoreItem;
 
 public class FallingObjectManager {
 	private ArrayList<FallingObject> objectList = new ArrayList<FallingObject>();
@@ -15,6 +17,7 @@ public class FallingObjectManager {
 	
 	public FallingObjectManager() {  
 		itemList.add(new ClearItem());
+		itemList.add(new RandomScoreItem());
 	}
 	
 	public int getCurrentObjectCount() {
@@ -35,8 +38,8 @@ public class FallingObjectManager {
 	}
 	
 	public FallingObject pickItem() {
-		FallingObject item = itemList.get(0);
+		FallingObject item = itemList.get(ThreadLocalRandom.current().nextInt(0, itemList.size()));
 		item.setNewItemPosition();
 		return item;
-	}//아이템 여러개 구현 시 이거 수정
+	}
 }

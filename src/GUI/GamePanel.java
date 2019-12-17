@@ -5,6 +5,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -227,6 +228,7 @@ public class GamePanel extends JPanel {
 			&& characterTop < itemBottom) {
 			itemEffect(currentItem.getClass().getName());
 			currentItem = fallingManager.pickItem();
+			itemLabel.setIcon(currentItem.getFallingObjectImage());
 		}
 		
 	}
@@ -241,7 +243,9 @@ public class GamePanel extends JPanel {
 		if(itemName.equals("gameobject.SlowItem")) {
 			
 		}
-		
+		if(itemName.equals("gameobject.RandomScoreItem")) {
+			currentGameCharacter.setCurrentScore(currentGameCharacter.getCurrentScore() + ThreadLocalRandom.current().nextInt(-1000, 1001));
+		}
 		
 	}//앞으로 다른아이템 효과도 여기서
 }

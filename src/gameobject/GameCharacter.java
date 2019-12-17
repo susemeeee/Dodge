@@ -8,7 +8,7 @@ public class GameCharacter {
 	private Point currentPosition;
 	private Point sizeRange;
 	private ImageIcon characterImage = new ImageIcon("gamefiles/images/gamecharacter2.png");
-	private int highScore;//일단 100으로 때려박아놓고 랭킹기능 테스트
+	private int highScore;
 	private int currentScore;
 	private String username;
 	
