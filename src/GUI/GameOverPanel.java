@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+import javax.crypto.spec.GCMParameterSpec;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -65,6 +66,9 @@ public class GameOverPanel extends JPanel {
 		rouletteButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				rouletteScore(gameCharacter);
+				scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
+				
 				remove(rouletteButton);
 				remove(rouletInfoLabel);
 				revalidate();
@@ -114,5 +118,11 @@ public class GameOverPanel extends JPanel {
 		newRecordLabel.setSize(300, 70);
 		newRecordLabel.setLocation(300, 400);
 		newRecordLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 36));
+	}
+	
+	private void rouletteScore(GameCharacter gameCharacter) {
+		double magnification = Math.random() * 1.2 + 0.4;
+		gameCharacter.setCurrentScore((int)(gameCharacter.getCurrentScore() * magnification));
+		System.out.println(gameCharacter.getCurrentScore());
 	}
 }

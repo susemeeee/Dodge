@@ -238,6 +238,10 @@ public class GamePanel extends JPanel {
 				fallingLabel.get(i).setLocation(fallingManager.getFallingObject(i).getCurrentPosition());
 			}
 		}
+		if(itemName.equals("gameobject.SlowItem")) {
+			
+		}
+		
 		
 	}//앞으로 다른아이템 효과도 여기서
 }

@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -18,10 +19,13 @@ import core.PlaySound;
 import gameobject.GameCharacter;
 
 public class LoginPanel extends JPanel {
-	private JLabel gameTitleLabel = new JLabel("¶ËÇÇÇÏ±â");
+	private JLabel gameTitleLabel1 = new JLabel("Escape From");
+	private JLabel gameTitleLabel2 = new JLabel("Youtube");
 	private JLabel loginLabel = new JLabel("username : ");
+	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle2.png"));
+	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter2.png"));
+	private JLabel moveEffectLabel = new JLabel("(((       (((");
 	private JTextField usernameField = new JTextField();
-	//private JButton loginButton = new JButton(new ImageIcon("gamefiles/images/loginButton.png"));
 	private JButton loginButton = new JButton("login");
 	private GameCharacter gameCharacter = new GameCharacter();
 	private PlaySound playSound = new PlaySound();
@@ -29,6 +33,7 @@ public class LoginPanel extends JPanel {
 	public LoginPanel() {
 		setDefaultPanel();
 		setLayout(null);
+		//setBackground(Color.WHITE);
 
 		loginButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -77,21 +82,32 @@ public class LoginPanel extends JPanel {
 			}
 		});
 		
-		add(gameTitleLabel);
+		add(gameTitleLabel1);
+		add(gameTitleLabel2);
 		add(loginButton);
 		add(loginLabel);
 		add(usernameField);
+		add(charcterLabel);
+		add(youtubeLabel);
+		add(moveEffectLabel);
 	}
 	
 	private void setDefaultPanel() {
-		gameTitleLabel.setSize(400, 100);
-		gameTitleLabel.setLocation(300, 100);
-		gameTitleLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 48));
+		gameTitleLabel1.setSize(400, 100);
+		gameTitleLabel1.setLocation(150, 100);
+		gameTitleLabel1.setFont(new Font("consolas", Font.ITALIC, 48));
+		gameTitleLabel1.setForeground(Color.BLACK);
+		
+		gameTitleLabel2.setSize(200, 100);
+		gameTitleLabel2.setLocation(150, 200);
+		gameTitleLabel2.setFont(new Font("consolas", Font.BOLD, 48));
+		gameTitleLabel2.setForeground(Color.RED);
 		
 		loginButton.setSize(100, 29);
 		loginButton.setLocation(550, 348);
 		loginButton.setContentAreaFilled(false);
 		loginButton.setFont(new Font("consolas", Font.BOLD, 20));
+		loginButton.setForeground(Color.BLACK);
 		
 		usernameField.setSize(200, 25);
 		usernameField.setLocation(300, 350);
@@ -99,5 +115,19 @@ public class LoginPanel extends JPanel {
 		loginLabel.setSize(200, 25);
 		loginLabel.setLocation(150, 350);
 		loginLabel.setFont(new Font("consolas", Font.PLAIN, 20));
+		loginLabel.setForeground(Color.BLACK);
+		
+		charcterLabel.setSize(50,50);
+		charcterLabel.setLocation(650,220);
+		
+		youtubeLabel.setSize(40,40);
+		youtubeLabel.setLocation(500,230);
+		
+		moveEffectLabel.setSize(400, 25);
+		moveEffectLabel.setLocation(450, 240);
+		moveEffectLabel.setFont(new Font("consolas", Font.BOLD, 28));
+		moveEffectLabel.setForeground(Color.DARK_GRAY);
+		
+		
 	}
 }
