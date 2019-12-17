@@ -42,9 +42,9 @@ public class FallingObjectManager {
 	}
 	
 	public FallingObject pickItem() {
-		FallingObject item = itemList.get(ThreadLocalRandom.current().nextInt(0, itemList.size()));
+		//FallingObject item = itemList.get(ThreadLocalRandom.current().nextInt(0, itemList.size()));
+		FallingObject item = itemList.get(0);
 		item.setNewItemPosition();
-		System.out.println(item.getClass());
 		return item;
 	}
 }

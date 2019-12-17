@@ -24,7 +24,7 @@ import gamethread.TimeThread;
 public class GamePanel extends JPanel {
 	private final int MIN_X = 0;
 	private final int MAX_X = 750;
-	private final int MAX_Y = 525;
+	private final int MAX_Y = 550;
 	private GameCharacter currentGameCharacter;
 	private JLabel characterLabel;
 	private ImageIcon groundIcon = new ImageIcon("gamefiles/images/ground.png");
@@ -250,7 +250,6 @@ public class GamePanel extends JPanel {
 		int itemRight = currentItem.getCurrentPosition().x + currentItem.getSizeRange().x;
 		int itemBottom = currentItem.getCurrentPosition().y + currentItem.getSizeRange().y + 10;
 		
-		
 		if(((characterRight > itemLeft && characterLeft < itemLeft)
 				|| (characterRight > itemRight && characterLeft < itemRight))
 			&& characterTop < itemBottom) {
@@ -258,11 +257,11 @@ public class GamePanel extends JPanel {
 			currentItem = fallingManager.pickItem();
 			itemLabel.setIcon(currentItem.getFallingObjectImage());
 		}
-		
-		if(itemBottom > MAX_Y) {
+		else if(itemBottom > MAX_Y) {
 			currentItem = fallingManager.pickItem();
 			itemLabel.setIcon(currentItem.getFallingObjectImage());
 		}
+
 	}
 	
 	public void itemEffect(String itemName) {

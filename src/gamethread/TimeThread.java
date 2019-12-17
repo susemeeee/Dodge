@@ -12,7 +12,7 @@ public class TimeThread extends Thread {
 	}
 
 	public void run() {
-		while(isRunning == true) {
+		while(isRunning) {
 			if(gamePanel.getFallingSpeed() == 1) {
 				gamePanel.setDurationTime();
 				if(gamePanel.getDurationTime() > 3000) {

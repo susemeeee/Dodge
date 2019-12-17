@@ -23,7 +23,7 @@ public class GameOverPanel extends JPanel {
 	private JLabel newRecordLabel = new JLabel("new Record!");
 	private PlaySound playSound = new PlaySound();
 	private JButton rouletteButton = new JButton("룰 렛");
-	private JLabel rouletteInfoLabel = new JLabel("1회 돌려서 점수변경");
+	private JLabel rouletteInfoLabel = new JLabel("1회 돌려서 점수변경 3회 돌릴 시 최대 64배!!!");
 	private int rouletteCount = 0;
 	private JLabel remainingCountLabel = new JLabel(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
 	
@@ -127,7 +127,7 @@ public class GameOverPanel extends JPanel {
 		rouletteButton.setFont(new Font("굴림체", Font.BOLD, 24));
 		rouletteButton.setContentAreaFilled(false);
 		
-		rouletteInfoLabel.setSize(400, 70);
+		rouletteInfoLabel.setSize(550, 70);
 		rouletteInfoLabel.setLocation(10, 460);
 		rouletteInfoLabel.setFont(new Font("굴림체", Font.BOLD, 20));
 		
@@ -143,7 +143,7 @@ public class GameOverPanel extends JPanel {
 	}
 	
 	private void rouletteScore(GameCharacter gameCharacter) {
-		double magnification = Math.pow(2.0, ThreadLocalRandom.current().nextDouble(-4.0, 3.0));
+		double magnification = Math.pow(2.0, ThreadLocalRandom.current().nextDouble(-3.0, 2.0));
 		gameCharacter.setCurrentScore((int)(gameCharacter.getCurrentScore() * magnification));
 	}
 }

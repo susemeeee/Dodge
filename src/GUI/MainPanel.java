@@ -1,10 +1,12 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +17,11 @@ import gameobject.GameCharacter;
 public class MainPanel extends JPanel {
 	private JButton startButton = new JButton("start");
 	private JButton rankingButton = new JButton("ranking");
-	private JLabel gameTitleLabel = new JLabel("¶ËÇÇÇÏ±â");
+	private JLabel gameTitleLabel1 = new JLabel("Dodge");
+	private JLabel gameTitleLabel2 = new JLabel("Youtube");
+	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle2.png"));
+	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter2.png"));
+	private JLabel moveEffectLabel = new JLabel("(((       (((");
 	private PlaySound playSound = new PlaySound();
 
 	public MainPanel(GameCharacter gameCharacter) {
@@ -46,9 +52,13 @@ public class MainPanel extends JPanel {
 			}
 		});
 
-		add(gameTitleLabel);
+		add(gameTitleLabel1);
+		add(gameTitleLabel2);
 		add(startButton);
 		add(rankingButton);
+		add(charcterLabel);
+		add(moveEffectLabel);
+		add(youtubeLabel);
 	}
 
 	private void setDefaultPanel() {
@@ -64,9 +74,25 @@ public class MainPanel extends JPanel {
 		startButton.setContentAreaFilled(false);
 		rankingButton.setContentAreaFilled(false);
 
-		gameTitleLabel.setSize(400, 100);
-		gameTitleLabel.setLocation(300, 100);
-		gameTitleLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 48));
+		gameTitleLabel1.setSize(400, 100);
+		gameTitleLabel1.setLocation(150, 80);
+		gameTitleLabel1.setFont(new Font("consolas", Font.ITALIC, 48));
+		gameTitleLabel1.setForeground(Color.BLACK);
 		
+		gameTitleLabel2.setSize(200, 100);
+		gameTitleLabel2.setLocation(150, 180);
+		gameTitleLabel2.setFont(new Font("consolas", Font.BOLD, 48));
+		gameTitleLabel2.setForeground(Color.RED);
+		
+		charcterLabel.setSize(50,50);
+		charcterLabel.setLocation(650,200);
+		
+		youtubeLabel.setSize(40,40);
+		youtubeLabel.setLocation(500,210);
+		
+		moveEffectLabel.setSize(400, 25);
+		moveEffectLabel.setLocation(450, 220);
+		moveEffectLabel.setFont(new Font("consolas", Font.BOLD, 28));
+		moveEffectLabel.setForeground(Color.DARK_GRAY);
 	}
 }

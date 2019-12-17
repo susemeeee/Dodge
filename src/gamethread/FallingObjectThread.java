@@ -11,7 +11,7 @@ public class FallingObjectThread extends Thread {
 	}
 	
 	public void run() {
-		while(isRunning == true) {
+		while(isRunning) {
 			gamePanel.setFallingObjectPosition();
 			try {
 				if(gamePanel.getFallingSpeed() == 0)
