@@ -17,15 +17,15 @@ import gameobject.GameCharacter;
 public class GameOverPanel extends JPanel {
 	private final int MAX_ROULETTE = 3;
 	private JButton backButton = new JButton("Back");
-	private JLabel gameOverLabel = new JLabel("ê²Œìž„ ì˜¤ë²„");
+	private JLabel gameOverLabel = new JLabel("°ÔÀÓ ¿À¹ö");
 	private JLabel scoreTitleLabel = new JLabel("Score: ");
 	private JLabel scoreLabel = new JLabel();
 	private JLabel newRecordLabel = new JLabel("new Record!");
 	private PlaySound playSound = new PlaySound();
-	private JButton rouletteButton = new JButton("ï¿½ï¿½ ï¿½ï¿½");
-	private JLabel rouletteInfoLabel = new JLabel("1È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+	private JButton rouletteButton = new JButton("·ê ·¿");
+	private JLabel rouletteInfoLabel = new JLabel("1È¸ µ¹·Á¼­ Á¡¼öº¯°æ 3È¸ µ¹¸± ½Ã ÃÖ´ë 64¹è!!!");
 	private int rouletteCount = 0;
-	private JLabel remainingCountLabel = new JLabel(Integer.toString(MAX_ROULETTE - rouletteCount) + " È¸ ï¿½ï¿½ï¿½ï¿½");
+	private JLabel remainingCountLabel = new JLabel(Integer.toString(MAX_ROULETTE - rouletteCount) + " È¸ ³²À½");
 	
 	public GameOverPanel(GameCharacter gameCharacter) throws IOException {
 		setLayout(null);
@@ -73,7 +73,7 @@ public class GameOverPanel extends JPanel {
 				if(rouletteCount < MAX_ROULETTE) {
 					rouletteScore(gameCharacter);
 					scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
-					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " È¸ ï¿½ï¿½ï¿½ï¿½");
+					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " È¸ ³²À½");
 					
 					revalidate();
 					repaint();
@@ -81,7 +81,7 @@ public class GameOverPanel extends JPanel {
 				else {
 					rouletteScore(gameCharacter);
 					scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
-					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " È¸ ï¿½ï¿½ï¿½ï¿½");
+					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " È¸ ³²À½");
 					
 					remove(rouletteButton);
 					remove(rouletteInfoLabel);
@@ -105,16 +105,16 @@ public class GameOverPanel extends JPanel {
 	private void setDefaultPanel(GameCharacter gameCharacter) {
 		gameOverLabel.setSize(300, 70);
 		gameOverLabel.setLocation(320, 100);
-		gameOverLabel.setFont(new Font("ï¿½Ã¼ï¿½Ã¼", Font.BOLD, 36));
+		gameOverLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 36));
 		
 		scoreTitleLabel.setSize(300, 70);
 		scoreTitleLabel.setLocation(270, 250);
-		scoreTitleLabel.setFont(new Font("ï¿½Ã¼ï¿½Ã¼", Font.BOLD, 24));
+		scoreTitleLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 24));
 		
 		scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
 		scoreLabel.setSize(200, 70);
 		scoreLabel.setLocation(320, 250);
-		scoreLabel.setFont(new Font("ï¿½Ã¼ï¿½Ã¼", Font.PLAIN, 24));
+		scoreLabel.setFont(new Font("±Ã¼­Ã¼", Font.PLAIN, 24));
 		scoreLabel.setHorizontalAlignment(JLabel.RIGHT);
 		
 		backButton.setSize(100,40);
@@ -124,26 +124,26 @@ public class GameOverPanel extends JPanel {
 		
 		rouletteButton.setSize(100, 40);
 		rouletteButton.setLocation(10, 400);
-		rouletteButton.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ã¼", Font.BOLD, 24));
+		rouletteButton.setFont(new Font("±¼¸²Ã¼", Font.BOLD, 24));
 		rouletteButton.setContentAreaFilled(false);
 		
-		rouletteInfoLabel.setSize(400, 70);
+		rouletteInfoLabel.setSize(550, 70);
 		rouletteInfoLabel.setLocation(10, 460);
-		rouletteInfoLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ã¼", Font.BOLD, 20));
+		rouletteInfoLabel.setFont(new Font("±¼¸²Ã¼", Font.BOLD, 20));
 		
 		remainingCountLabel.setSize(400, 70);
 		remainingCountLabel.setLocation(10, 500);
-		remainingCountLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ã¼", Font.BOLD, 20));
+		remainingCountLabel.setFont(new Font("±¼¸²Ã¼", Font.BOLD, 20));
 	}
 	
 	private void setNewRecordLabel() {
 		newRecordLabel.setSize(300, 70);
 		newRecordLabel.setLocation(300, 400);
-		newRecordLabel.setFont(new Font("ï¿½Ã¼ï¿½Ã¼", Font.BOLD, 36));
+		newRecordLabel.setFont(new Font("±Ã¼­Ã¼", Font.BOLD, 36));
 	}
 	
 	private void rouletteScore(GameCharacter gameCharacter) {
-		double magnification = Math.pow(2.0, ThreadLocalRandom.current().nextDouble(-4.0, 3.0));
+		double magnification = Math.pow(2.0, ThreadLocalRandom.current().nextDouble(-3.0, 2.0));
 		gameCharacter.setCurrentScore((int)(gameCharacter.getCurrentScore() * magnification));
 	}
 }

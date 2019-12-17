@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -19,7 +20,7 @@ import core.PlaySound;
 import gameobject.GameCharacter;
 
 public class LoginPanel extends JPanel {
-	private JLabel gameTitleLabel1 = new JLabel("Escape From");
+	private JLabel gameTitleLabel1 = new JLabel("Dodge");
 	private JLabel gameTitleLabel2 = new JLabel("Youtube");
 	private JLabel loginLabel = new JLabel("username : ");
 	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle2.png"));
@@ -33,7 +34,6 @@ public class LoginPanel extends JPanel {
 	public LoginPanel() {
 		setDefaultPanel();
 		setLayout(null);
-		//setBackground(Color.WHITE);
 
 		loginButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -82,6 +82,7 @@ public class LoginPanel extends JPanel {
 			}
 		});
 		
+		
 		add(gameTitleLabel1);
 		add(gameTitleLabel2);
 		add(loginButton);
@@ -92,14 +93,14 @@ public class LoginPanel extends JPanel {
 		add(moveEffectLabel);
 	}
 	
-	private void setDefaultPanel() {
+	private void setDefaultPanel() {	
 		gameTitleLabel1.setSize(400, 100);
-		gameTitleLabel1.setLocation(150, 100);
+		gameTitleLabel1.setLocation(150, 80);
 		gameTitleLabel1.setFont(new Font("consolas", Font.ITALIC, 48));
 		gameTitleLabel1.setForeground(Color.BLACK);
 		
 		gameTitleLabel2.setSize(200, 100);
-		gameTitleLabel2.setLocation(150, 200);
+		gameTitleLabel2.setLocation(150, 180);
 		gameTitleLabel2.setFont(new Font("consolas", Font.BOLD, 48));
 		gameTitleLabel2.setForeground(Color.RED);
 		
@@ -118,13 +119,13 @@ public class LoginPanel extends JPanel {
 		loginLabel.setForeground(Color.BLACK);
 		
 		charcterLabel.setSize(50,50);
-		charcterLabel.setLocation(650,220);
+		charcterLabel.setLocation(650,200);
 		
 		youtubeLabel.setSize(40,40);
-		youtubeLabel.setLocation(500,230);
+		youtubeLabel.setLocation(500,210);
 		
 		moveEffectLabel.setSize(400, 25);
-		moveEffectLabel.setLocation(450, 240);
+		moveEffectLabel.setLocation(450, 220);
 		moveEffectLabel.setFont(new Font("consolas", Font.BOLD, 28));
 		moveEffectLabel.setForeground(Color.DARK_GRAY);
 		

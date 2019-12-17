@@ -15,7 +15,7 @@ public class MovingThread extends Thread {
 	
 	public void run() {
 		GameCharacter character = gamePanel.getGameCharacter();
-        while(isRunning == true) {
+        while(isRunning) {
             if(gamePanel.getKeyStatus() == 1) {
                 if(gamePanel.getKeyCode() == KeyEvent.VK_LEFT) {
                     character.getCurrentPosition().x -= 1;

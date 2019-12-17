@@ -11,7 +11,7 @@ public class ScoreThread extends Thread {
 	}
 	
 	public void run() {
-		while(isRunning == true) {
+		while(isRunning) {
 			try {
             	Thread.sleep(15);
             } 

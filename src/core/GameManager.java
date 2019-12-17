@@ -101,6 +101,7 @@ public class GameManager {
 		
 		while(fileLine != null) {
 			splitLine = fileLine.split("=");
+			System.out.println(fileLine);
 			rankingArray.add(new RankingInfo(splitLine[0], Integer.parseInt(splitLine[1])));
 			fileLine = rankingBuffer.readLine();
 		}

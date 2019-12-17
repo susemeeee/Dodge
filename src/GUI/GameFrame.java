@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import gameobject.GameCharacter;

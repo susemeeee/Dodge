@@ -7,7 +7,7 @@ public class SoundThread extends Thread {
 	private boolean isRunning = true;
 	
 	public void run() {
-		while (isRunning == true) {
+		while (isRunning) {
 			try {
 				playSound.playSound("background");
 				Thread.sleep(108000);
