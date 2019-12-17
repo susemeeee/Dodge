@@ -143,7 +143,7 @@ public class GameOverPanel extends JPanel {
 	}
 	
 	private void rouletteScore(GameCharacter gameCharacter) {
-		double magnification = ThreadLocalRandom.current().nextDouble(0.4, 1.6);
+		double magnification = Math.pow(2.0, ThreadLocalRandom.current().nextDouble(-4.0, 3.0));
 		gameCharacter.setCurrentScore((int)(gameCharacter.getCurrentScore() * magnification));
 	}
 }
