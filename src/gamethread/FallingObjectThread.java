@@ -14,7 +14,12 @@ public class FallingObjectThread extends Thread {
 		while(isRunning == true) {
 			gamePanel.setFallingObjectPosition();
 			try {
-				Thread.sleep(2);
+				if(gamePanel.getFallingSpeed() == 0)
+					Thread.sleep(2);
+				else if(gamePanel.getFallingSpeed() == 1) 
+					Thread.sleep(5);
+				else
+					Thread.sleep(1);
 			} 
 			catch (InterruptedException e) {
 				e.printStackTrace();

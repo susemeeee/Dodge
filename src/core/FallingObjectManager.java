@@ -6,7 +6,9 @@ import javax.swing.ImageIcon;
 
 import gameobject.ClearItem;
 import gameobject.FallingObject;
+import gameobject.FastItem;
 import gameobject.ObstacleObject;
+import gameobject.SlowItem;
 
 public class FallingObjectManager {
 	private ArrayList<FallingObject> objectList = new ArrayList<FallingObject>();
@@ -14,7 +16,9 @@ public class FallingObjectManager {
 	private int	currentObjectCount = 0;
 	
 	public FallingObjectManager() {  
-		itemList.add(new ClearItem());
+		//itemList.add(new ClearItem());
+		//itemList.add(new SlowItem());
+		itemList.add(new FastItem());
 	}
 	
 	public int getCurrentObjectCount() {
