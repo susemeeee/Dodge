@@ -11,12 +11,14 @@ public class GameCharacter {
 	private int highScore;
 	private int currentScore;
 	private String username;
+	private boolean invincible;
 	
 	public GameCharacter() {
 		currentPosition = new Point(400, 500);
 		sizeRange = new Point(30,30);
 		highScore = 0;
 		currentScore = 0;
+		invincible = false;
 	}
 	
 	public Point getCurrentPosition() {
@@ -42,6 +44,10 @@ public class GameCharacter {
 		return username;
 	}
 	
+	public boolean isInvincible() {
+		return invincible;
+	}
+	
 	public void setHighScore(int highScore) {
 		this.highScore = highScore;
 	}
@@ -52,5 +58,9 @@ public class GameCharacter {
 	
 	public void setUserName(String username) {
 		this.username = username;
+	}
+	
+	public void setInvincible(boolean invincible) {
+		this.invincible = invincible;
 	}
 }

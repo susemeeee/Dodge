@@ -9,6 +9,6 @@ public class ObstacleObject extends FallingObject{
 	public ObstacleObject(int y) {
 		fallingObjectImage = new ImageIcon("gamefiles/images/obstacle2.png");
 		currentPosition = new Point(ThreadLocalRandom.current().nextInt(0, 800), y);
-		sizeRange = new Point(20,20);
+		sizeRange = new Point(20, 20);
 	}
 }

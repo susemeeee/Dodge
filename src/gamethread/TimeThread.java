@@ -1,5 +1,7 @@
 package gamethread;
 
+import javax.swing.ImageIcon;
+
 import GUI.GamePanel;
 
 public class TimeThread extends Thread {
@@ -20,11 +22,23 @@ public class TimeThread extends Thread {
 					gamePanel.resetFallingSpeed();
 				}
 			}
+			
 			if(gamePanel.getFallingSpeed() == 2) {
 				gamePanel.setDurationTime();
 				if(gamePanel.getDurationTime() > 1000) {
 					gamePanel.resetDurationTime();
 					gamePanel.resetFallingSpeed();
+				}
+			}
+			
+			if(gamePanel.getGameCharacter().isInvincible()) {
+				gamePanel.getGameCharacterLabel().setIcon(new ImageIcon("gamefiles/images/invinciblecharacter.png"));
+				gamePanel.setDurationTime();
+				System.out.println(gamePanel.getDurationTime());
+				if(gamePanel.getDurationTime() > 3000) {
+					gamePanel.getGameCharacterLabel().setIcon(gamePanel.getGameCharacter().getCharacterImage());
+					gamePanel.resetDurationTime();
+					gamePanel.getGameCharacter().setInvincible(false);
 				}
 			}
 			try {

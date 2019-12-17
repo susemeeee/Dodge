@@ -174,6 +174,10 @@ public class GamePanel extends JPanel {
 	public GameCharacter getGameCharacter() {
 		return currentGameCharacter;
 	}
+	
+	public JLabel getGameCharacterLabel() {
+		return characterLabel;
+	}
 
 	public FallingObjectManager getFallingManager() {
 		return fallingManager;
@@ -225,7 +229,7 @@ public class GamePanel extends JPanel {
 			
 			if (((characterRight > objectLeft && characterLeft < objectLeft)
 					|| (characterRight > objectRight && characterLeft < objectRight))
-				&& characterTop < objectBottom)
+				&& characterTop < objectBottom && !(currentGameCharacter.isInvincible()) )
 			{
 				characterLabel.setIcon(new ImageIcon("gamefiles/images/shockwave.png"));
 				fallingThread.shutdown();
@@ -246,9 +250,9 @@ public class GamePanel extends JPanel {
 			}
 		}
 		
-		int itemLeft = currentItem.getCurrentPosition().x + 10;
+		int itemLeft = currentItem.getCurrentPosition().x + 5;
 		int itemRight = currentItem.getCurrentPosition().x + currentItem.getSizeRange().x;
-		int itemBottom = currentItem.getCurrentPosition().y + currentItem.getSizeRange().y + 10;
+		int itemBottom = currentItem.getCurrentPosition().y + currentItem.getSizeRange().y + 5;
 		
 		
 		if(((characterRight > itemLeft && characterLeft < itemLeft)
@@ -279,8 +283,13 @@ public class GamePanel extends JPanel {
 		if(itemName.equals("gameobject.FastItem")) {
 			fallingSpeed = 2;
 		}
+		
 		if(itemName.equals("gameobject.RandomScoreItem")) {
 			currentGameCharacter.setCurrentScore(currentGameCharacter.getCurrentScore() + ThreadLocalRandom.current().nextInt(-1000, 1001));
+		}
+		
+		if(itemName.equals("gameobject.InvincibleItem")) {
+			currentGameCharacter.setInvincible(true);
 		}
 		
 	}//앞으로 다른아이템 효과도 여기서

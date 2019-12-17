@@ -15,7 +15,7 @@ import gameobject.GameCharacter;
 public class MainPanel extends JPanel {
 	private JButton startButton = new JButton("start");
 	private JButton rankingButton = new JButton("ranking");
-	private JLabel gameTitleLabel = new JLabel("∂À«««œ±‚");
+	private JLabel gameTitleLabel = new JLabel("Dodge Youtube");
 	private PlaySound playSound = new PlaySound();
 
 	public MainPanel(GameCharacter gameCharacter) {
@@ -66,7 +66,7 @@ public class MainPanel extends JPanel {
 
 		gameTitleLabel.setSize(400, 100);
 		gameTitleLabel.setLocation(300, 100);
-		gameTitleLabel.setFont(new Font("±√º≠√º", Font.BOLD, 48));
+		gameTitleLabel.setFont(new Font("Í∂ÅÏÑúÏ≤¥", Font.BOLD, 48));
 		
 	}
 }
