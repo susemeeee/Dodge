@@ -19,10 +19,12 @@ import gamethread.MovingThread;
 import gamethread.RulingThread;
 import gamethread.ScoreThread;
 import gamethread.SoundThread;
+import gamethread.TimeThread;
 
 public class GamePanel extends JPanel {
 	private final int MIN_X = 0;
 	private final int MAX_X = 750;
+	private final int MAX_Y = 525;
 	private GameCharacter currentGameCharacter;
 	private JLabel characterLabel;
 	private ImageIcon groundIcon = new ImageIcon("gamefiles/images/ground.png");
@@ -36,6 +38,7 @@ public class GamePanel extends JPanel {
 	private RulingThread rulingThread = new RulingThread(this);
 	private ScoreThread scoreThread = new ScoreThread(this);
 	private SoundThread soundThread = new SoundThread();
+	private TimeThread timeThread = new TimeThread(this);
 	private JLabel scoreTitle;
 	private JLabel scoreLabel;
 	private JLabel highScoreTitle;
@@ -43,6 +46,8 @@ public class GamePanel extends JPanel {
 	private int fallingObjectNum = 30;
 	private int isKeyPressed = 0;
 	private int keycode = 0;
+	private int fallingSpeed = 0;  // 0 = defalut, 1 = slow, 2 = fast
+	private int durationTime = 0;  // 아이템 효과 지속시간
 
 	public GamePanel(GameCharacter gameCharacter) {
 		this.currentGameCharacter = gameCharacter;
@@ -55,6 +60,7 @@ public class GamePanel extends JPanel {
 		rulingThread.start();
 		scoreThread.start();
 		soundThread.start();
+		timeThread.start();
 
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -173,6 +179,27 @@ public class GamePanel extends JPanel {
 		return fallingManager;
 	}
 	
+	public int getFallingSpeed() {
+		return fallingSpeed;
+	}
+	
+	public void resetFallingSpeed() {
+		fallingSpeed = 0;
+	}
+	
+	public int getDurationTime() {
+		return durationTime;
+	}
+	
+	public void setDurationTime() {
+		durationTime++;
+		System.out.println(durationTime);
+	}
+	
+	public void resetDurationTime() {
+		durationTime = 0;
+	}
+	
 	public void setScore(int num) {
 		currentGameCharacter.setCurrentScore(currentGameCharacter.getCurrentScore() + num);
 		String toHighScore;
@@ -205,6 +232,7 @@ public class GamePanel extends JPanel {
 				movingThread.shutdown();
 				scoreThread.shutdown();
 				soundThread.shutdown();
+				timeThread.shutdown();
 				try {
 					Thread.sleep(2000);
 					GameFrame.changePanel(GameOverPanel.class.getName(), currentGameCharacter);
@@ -231,6 +259,10 @@ public class GamePanel extends JPanel {
 			itemLabel.setIcon(currentItem.getFallingObjectImage());
 		}
 		
+		if(itemBottom > MAX_Y) {
+			currentItem = fallingManager.pickItem();
+			itemLabel.setIcon(currentItem.getFallingObjectImage());
+		}
 	}
 	
 	public void itemEffect(String itemName) {
@@ -241,7 +273,11 @@ public class GamePanel extends JPanel {
 			}
 		}
 		if(itemName.equals("gameobject.SlowItem")) {
-			
+			fallingSpeed = 1;
+		}
+		
+		if(itemName.equals("gameobject.FastItem")) {
+			fallingSpeed = 2;
 		}
 		if(itemName.equals("gameobject.RandomScoreItem")) {
 			currentGameCharacter.setCurrentScore(currentGameCharacter.getCurrentScore() + ThreadLocalRandom.current().nextInt(-1000, 1001));
