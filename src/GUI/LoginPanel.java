@@ -44,7 +44,7 @@ public class LoginPanel extends JPanel {
 				
 				playSound.playSound("button");
 				if(username.trim().length() == 0) {
-					int result =JOptionPane.showConfirmDialog(null, "´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä", "error", JOptionPane.OK_OPTION);;
+					int result =JOptionPane.showConfirmDialog(null, "ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”", "error", JOptionPane.OK_OPTION);;
 					
 					if(result != JOptionPane.OK_OPTION) {
 						System.exit(0);
@@ -70,7 +70,7 @@ public class LoginPanel extends JPanel {
 					
 					playSound.playSound("button");
 					if(username.trim().length() == 0) {
-						int result =JOptionPane.showConfirmDialog(null, "´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä", "error", JOptionPane.OK_OPTION);;
+						int result =JOptionPane.showConfirmDialog(null, "ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”", "error", JOptionPane.OK_OPTION);;
 						
 						if(result != JOptionPane.OK_OPTION) {
 							System.exit(0);

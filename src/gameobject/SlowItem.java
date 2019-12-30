@@ -11,5 +11,4 @@ public class SlowItem extends FallingObject{
 		currentPosition = new Point(ThreadLocalRandom.current().nextInt(0, 800), ThreadLocalRandom.current().nextInt(-5000, -2000));
 		sizeRange = new Point(30, 30);
 	}
-
 }

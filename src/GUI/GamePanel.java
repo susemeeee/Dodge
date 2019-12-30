@@ -51,7 +51,7 @@ public class GamePanel extends JPanel {
 	private int isKeyPressed = 0;
 	private int keycode = 0;
 	private int fallingSpeed = 0;  // 0 = defalut, 1 = slow, 2 = fast
-	private int durationTime = 0;  // ¾ÆÀÌÅÛ È¿°ú Áö¼Ó½Ã°£
+	private int durationTime = 0;  // ì•„ì´í…œ íš¨ê³¼ ì§€ì†ì‹œê°„
 	private int randomScore = 0; // default = 0, eatItem => random number
 	private boolean isEffectOn = false;
 
@@ -347,5 +347,5 @@ public class GamePanel extends JPanel {
 			currentGameCharacter.setInvincible(true);
 		}
 		
-	}//¾ÕÀ¸·Î ´Ù¸¥¾ÆÀÌÅÛ È¿°úµµ ¿©±â¼­
+	}//ì•ìœ¼ë¡œ ë‹¤ë¥¸ì•„ì´í…œ íš¨ê³¼ë„ ì—¬ê¸°ì„œ
 }

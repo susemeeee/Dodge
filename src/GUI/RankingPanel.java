@@ -20,7 +20,7 @@ public class RankingPanel extends JPanel {
 	private ArrayList<Integer> highscoreArray = new ArrayList<Integer>();
 	private ArrayList<JLabel> userNameLabel = new ArrayList<JLabel>();
 	private ArrayList<JLabel> scoreLabel = new ArrayList<JLabel>();
-	private JLabel rankingTitleLabel = new JLabel("�� ŷ");
+	private JLabel rankingTitleLabel = new JLabel("랭 킹");
 	private JButton backButton = new JButton("Back");
 	private PlaySound playSound = new PlaySound();
 
@@ -34,13 +34,13 @@ public class RankingPanel extends JPanel {
 			userNameLabel.add(new JLabel(Integer.toString(i + 1) + "     " + usernameArray.get(i)));
 			userNameLabel.get(i + 1).setSize(150, 70);
 			userNameLabel.get(i + 1).setLocation(125, 50 * (i + 4));
-			userNameLabel.get(i + 1).setFont(new Font("�ü�ü", Font.PLAIN, 24));
+			userNameLabel.get(i + 1).setFont(new Font("궁서체", Font.PLAIN, 24));
 			add(userNameLabel.get(i + 1));
 			
 			scoreLabel.add(new JLabel(Integer.toString(highscoreArray.get(i))));
 			scoreLabel.get(i + 1).setSize(100, 70);
 			scoreLabel.get(i + 1).setLocation(490, 50 * (i + 4));
-			scoreLabel.get(i + 1).setFont(new Font("�ü�ü", Font.PLAIN, 24));
+			scoreLabel.get(i + 1).setFont(new Font("궁서체", Font.PLAIN, 24));
 			scoreLabel.get(i + 1).setHorizontalAlignment(JLabel.RIGHT);
 			add(scoreLabel.get(i + 1));
 		}
@@ -67,18 +67,18 @@ public class RankingPanel extends JPanel {
 		userNameLabel.add(new JLabel("Name"));
 		userNameLabel.get(0).setSize(100, 70);
 		userNameLabel.get(0).setLocation(175, 150);
-		userNameLabel.get(0).setFont(new Font("�ü�ü", Font.BOLD, 30));
+		userNameLabel.get(0).setFont(new Font("궁서체", Font.BOLD, 30));
 		userNameLabel.get(0).setHorizontalAlignment(JLabel.CENTER);
 		
 		scoreLabel.add(new JLabel("Score"));
 		scoreLabel.get(0).setSize(100, 70);
 		scoreLabel.get(0).setLocation(500, 150);
-		scoreLabel.get(0).setFont(new Font("�ü�ü", Font.BOLD, 30));
+		scoreLabel.get(0).setFont(new Font("궁서체", Font.BOLD, 30));
 		scoreLabel.get(0).setHorizontalAlignment(JLabel.CENTER);
 		
 		rankingTitleLabel.setSize(400, 70);
 		rankingTitleLabel.setLocation(325, 50);
-		rankingTitleLabel.setFont(new Font("�ü�ü", Font.BOLD, 48));
+		rankingTitleLabel.setFont(new Font("궁서체", Font.BOLD, 48));
 		
 		backButton.setSize(100,40);
 		backButton.setLocation(10, 10);
