@@ -35,65 +35,9 @@ public class GameOverPanel extends JPanel {
 		
 		setLayout(null);
 		
-		backButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if(gameCharacter.getCurrentScore() > gameCharacter.getHighScore()) {
-					gameCharacter.setHighScore(gameCharacter.getCurrentScore());
-					
-					try {
-						GameManager.saveHighScore(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					
-					setNewRecordLabel();
-					add(newRecordLabel);
-				}
-				
-				try {
-					GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
-				} catch (IOException e2) {
-					e2.printStackTrace();
-				}
-				
-				playSound.playSound("button");
-				
-				try {
-					gameCharacter.setCurrentScore(0);
-					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
+		backButton.addActionListener(e -> backAction(gameCharacter));
 		
-		rouletteButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				rouletteCount++;
-				if(rouletteCount < MAX_ROULETTE) {
-					rouletteScore(gameCharacter);
-					scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
-					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
-					
-					revalidate();
-					repaint();
-				}
-				else {
-					rouletteScore(gameCharacter);
-					scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
-					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
-					
-					remove(rouletteButton);
-					remove(rouletteInfoLabel);
-					remove(remainingCountLabel);
-					
-					revalidate();
-					repaint();
-				}
-			}
-		});
+		rouletteButton.addActionListener(e -> rouletteAction(gameCharacter));
 		
 		add(backButton);
 		add(gameOverLabel);
@@ -147,5 +91,59 @@ public class GameOverPanel extends JPanel {
 	private void rouletteScore(GameCharacter gameCharacter) {
 		double magnification = Math.pow(2.0, ThreadLocalRandom.current().nextDouble(-3.0, 2.0));
 		gameCharacter.setCurrentScore((int)(gameCharacter.getCurrentScore() * magnification));
+	}
+	
+	private void backAction(GameCharacter gameCharacter) {
+		if(gameCharacter.getCurrentScore() > gameCharacter.getHighScore()) {
+			gameCharacter.setHighScore(gameCharacter.getCurrentScore());
+			
+			try {
+				GameManager.saveHighScore(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			setNewRecordLabel();
+			add(newRecordLabel);
+		}
+		
+		try {
+			GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		
+		playSound.playSound("button");
+		
+		try {
+			gameCharacter.setCurrentScore(0);
+			GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	private void rouletteAction(GameCharacter gameCharacter) {
+		rouletteCount++;
+		if(rouletteCount < MAX_ROULETTE) {
+			rouletteScore(gameCharacter);
+			scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
+			remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
+			
+			revalidate();
+			repaint();
+		}
+		else {
+			rouletteScore(gameCharacter);
+			scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
+			remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
+			
+			remove(rouletteButton);
+			remove(rouletteInfoLabel);
+			remove(remainingCountLabel);
+			
+			revalidate();
+			repaint();
+		}
 	}
 }

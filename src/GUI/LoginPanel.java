@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.w3c.dom.events.EventListener;
+
 import core.GameManager;
 import core.PlaySound;
 import gameobject.GameCharacter;
@@ -36,57 +38,9 @@ public class LoginPanel extends JPanel {
 		setLayout(null);
 		setBackground(Color.WHITE);
 
-		loginButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				String username = usernameField.getText();
-				gameCharacter.setUserName(username);
-				
-				playSound.playSound("button");
-				if(username.trim().length() == 0) {
-					int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
-					
-					if(result != JOptionPane.OK_OPTION) {
-						System.exit(0);
-					}
-				}
-				else {
-					try {
-						GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
-						GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-				}
-			}
-		});
+		loginButton.addActionListener(e -> loginAction());
 		
-		usernameField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					String username = usernameField.getText();
-					gameCharacter.setUserName(username);
-					
-					playSound.playSound("button");
-					if(username.trim().length() == 0) {
-						int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
-						
-						if(result != JOptionPane.OK_OPTION) {
-							System.exit(0);
-						}
-					}
-					else {
-						try {
-							GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
-							GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-				}
-			}
-		});
+		usernameField.addActionListener(e -> loginAction());
 		
 		
 		add(gameTitleLabel1);
@@ -135,6 +89,27 @@ public class LoginPanel extends JPanel {
 		moveEffectLabel.setFont(new Font("consolas", Font.BOLD, 28));
 		moveEffectLabel.setForeground(Color.DARK_GRAY);
 		
+	}
+	
+	private void loginAction() {
+		String username = usernameField.getText();
+		gameCharacter.setUserName(username);
 		
+		playSound.playSound("button");
+		if(username.trim().length() == 0) {
+			int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
+			
+			if(result != JOptionPane.OK_OPTION) {
+				System.exit(0);
+			}
+		}
+		else {
+			try {
+				GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
+				GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 }

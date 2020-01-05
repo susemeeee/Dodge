@@ -3,6 +3,8 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -348,4 +350,5 @@ public class GamePanel extends JPanel {
 		}
 		
 	}//앞으로 다른아이템 효과도 여기서
+	
 }

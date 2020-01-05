@@ -45,17 +45,7 @@ public class RankingPanel extends JPanel {
 			add(scoreLabel.get(i + 1));
 		}
 		
-		backButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				playSound.playSound("button");
-				try {
-					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
+		backButton.addActionListener(e -> backAction(gameCharacter));
 		
 		add(userNameLabel.get(0));
 		add(scoreLabel.get(0));
@@ -84,5 +74,14 @@ public class RankingPanel extends JPanel {
 		backButton.setLocation(10, 10);
 		backButton.setFont(new Font("consolas", Font.BOLD, 24));
 		backButton.setContentAreaFilled(false);
+	}
+	
+	private void backAction(GameCharacter gameCharacter) {
+		playSound.playSound("button");
+		try {
+			GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 }

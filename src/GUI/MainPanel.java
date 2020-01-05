@@ -29,29 +29,9 @@ public class MainPanel extends JPanel {
 		setLayout(null);
 		setBackground(Color.WHITE);
 
-		startButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				playSound.playSound("button");
-				try {
-					GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
+		startButton.addActionListener(e -> startAction(gameCharacter));
 
-		rankingButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				playSound.playSound("button");
-				try {
-					GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
+		rankingButton.addActionListener(e -> rankingAction(gameCharacter));
 
 		add(gameTitleLabel1);
 		add(gameTitleLabel2);
@@ -95,5 +75,23 @@ public class MainPanel extends JPanel {
 		moveEffectLabel.setLocation(450, 220);
 		moveEffectLabel.setFont(new Font("consolas", Font.BOLD, 28));
 		moveEffectLabel.setForeground(Color.DARK_GRAY);
+	}
+	
+	private void startAction(GameCharacter gameCharacter) {
+		playSound.playSound("button");
+		try {
+			GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	private void rankingAction(GameCharacter gameCharacter) {
+		playSound.playSound("button");
+		try {
+			GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 }
