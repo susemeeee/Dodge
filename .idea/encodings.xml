@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/GUI/GameFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/GUI/GameOverPanel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/GUI/GamePanel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/GUI/LoginPanel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/GUI/MainPanel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/GUI/RankingPanel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/core/FallingObjectManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/core/GameManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/core/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/core/PlaySound.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/core/RankingInfo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/ClearItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/FallingObject.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/FastItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/GameCharacter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/InvincibleItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/ObstacleObject.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/RandomScoreItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gameobject/SlowItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gamethread/FallingObjectThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gamethread/MovingThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gamethread/RulingThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gamethread/ScoreThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gamethread/SoundThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/gamethread/TimeThread.java" charset="UTF-8" />
+  </component>
+</project>

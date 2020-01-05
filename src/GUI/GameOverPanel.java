@@ -2,8 +2,6 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -34,64 +32,60 @@ public class GameOverPanel extends JPanel {
 		setBackground(Color.WHITE);
 		
 		setLayout(null);
-		
-		backButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if(gameCharacter.getCurrentScore() > gameCharacter.getHighScore()) {
-					gameCharacter.setHighScore(gameCharacter.getCurrentScore());
-					
-					try {
-						GameManager.saveHighScore(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					
-					setNewRecordLabel();
-					add(newRecordLabel);
-				}
-				
+
+		//changed
+		backButton.addActionListener(e -> {
+			if(gameCharacter.getCurrentScore() > gameCharacter.getHighScore()) {
+				gameCharacter.setHighScore(gameCharacter.getCurrentScore());
+
 				try {
-					GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
-				} catch (IOException e2) {
-					e2.printStackTrace();
-				}
-				
-				playSound.playSound("button");
-				
-				try {
-					gameCharacter.setCurrentScore(0);
-					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+					GameManager.saveHighScore(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+
+				setNewRecordLabel();
+				add(newRecordLabel);
+			}
+
+			try {
+				GameManager.sortRanking(gameCharacter.getUserName(), gameCharacter.getCurrentScore());
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			}
+
+			playSound.playSound("button");
+
+			try {
+				gameCharacter.setCurrentScore(0);
+				GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		});
-		
-		rouletteButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				rouletteCount++;
-				if(rouletteCount < MAX_ROULETTE) {
-					rouletteScore(gameCharacter);
-					scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
-					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
-					
-					revalidate();
-					repaint();
-				}
-				else {
-					rouletteScore(gameCharacter);
-					scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
-					remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
-					
-					remove(rouletteButton);
-					remove(rouletteInfoLabel);
-					remove(remainingCountLabel);
-					
-					revalidate();
-					repaint();
-				}
+
+		//changed
+		rouletteButton.addActionListener(e -> {
+			rouletteCount++;
+			if(rouletteCount < MAX_ROULETTE) {
+				rouletteScore(gameCharacter);
+				scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
+				remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
+
+				revalidate();
+				repaint();
+			}
+			else {
+				rouletteScore(gameCharacter);
+				scoreLabel.setText(Integer.toString(gameCharacter.getCurrentScore()));
+				remainingCountLabel.setText(Integer.toString(MAX_ROULETTE - rouletteCount) + " 회 남음");
+
+				remove(rouletteButton);
+				remove(rouletteInfoLabel);
+				remove(remainingCountLabel);
+
+				revalidate();
+				repaint();
 			}
 		});
 		

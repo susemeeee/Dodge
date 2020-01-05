@@ -44,16 +44,14 @@ public class RankingPanel extends JPanel {
 			scoreLabel.get(i + 1).setHorizontalAlignment(JLabel.RIGHT);
 			add(scoreLabel.get(i + 1));
 		}
-		
-		backButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				playSound.playSound("button");
-				try {
-					GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+
+		//changed
+		backButton.addActionListener(e -> {
+			playSound.playSound("button");
+			try {
+				GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		});
 		

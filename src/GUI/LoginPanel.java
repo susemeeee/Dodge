@@ -2,10 +2,6 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -24,7 +20,7 @@ public class LoginPanel extends JPanel {
 	private JLabel gameTitleLabel2 = new JLabel("Youtube");
 	private JLabel loginLabel = new JLabel("username : ");
 	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle.png"));
-	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter.png"));
+	private JLabel characterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter.png"));
 	private JLabel moveEffectLabel = new JLabel("(((       (((");
 	private JTextField usernameField = new JTextField();
 	private JButton loginButton = new JButton("login");
@@ -36,65 +32,16 @@ public class LoginPanel extends JPanel {
 		setLayout(null);
 		setBackground(Color.WHITE);
 
-		loginButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				String username = usernameField.getText();
-				gameCharacter.setUserName(username);
-				
-				playSound.playSound("button");
-				if(username.trim().length() == 0) {
-					int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
-					
-					if(result != JOptionPane.OK_OPTION) {
-						System.exit(0);
-					}
-				}
-				else {
-					try {
-						GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
-						GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-				}
-			}
-		});
-		
-		usernameField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					String username = usernameField.getText();
-					gameCharacter.setUserName(username);
-					
-					playSound.playSound("button");
-					if(username.trim().length() == 0) {
-						int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
-						
-						if(result != JOptionPane.OK_OPTION) {
-							System.exit(0);
-						}
-					}
-					else {
-						try {
-							GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
-							GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
-				}
-			}
-		});
-		
-		
+		//changed
+		loginButton.addActionListener(e -> loginAction());
+		usernameField.addActionListener(e -> loginAction());
+
 		add(gameTitleLabel1);
 		add(gameTitleLabel2);
 		add(loginButton);
 		add(loginLabel);
 		add(usernameField);
-		add(charcterLabel);
+		add(characterLabel);
 		add(youtubeLabel);
 		add(moveEffectLabel);
 	}
@@ -124,8 +71,8 @@ public class LoginPanel extends JPanel {
 		loginLabel.setFont(new Font("consolas", Font.PLAIN, 20));
 		loginLabel.setForeground(Color.BLACK);
 		
-		charcterLabel.setSize(50,50);
-		charcterLabel.setLocation(650,200);
+		characterLabel.setSize(50,50);
+		characterLabel.setLocation(650,200);
 		
 		youtubeLabel.setSize(40,40);
 		youtubeLabel.setLocation(500,210);
@@ -134,7 +81,27 @@ public class LoginPanel extends JPanel {
 		moveEffectLabel.setLocation(450, 220);
 		moveEffectLabel.setFont(new Font("consolas", Font.BOLD, 28));
 		moveEffectLabel.setForeground(Color.DARK_GRAY);
-		
-		
+	}
+
+	private void loginAction() {
+		String username = usernameField.getText();
+		gameCharacter.setUserName(username);
+
+		playSound.playSound("button");
+		if(username.trim().length() == 0) {
+			int result =JOptionPane.showConfirmDialog(null, "닉네임을 입력하세요", "error", JOptionPane.OK_OPTION);;
+
+			if(result != JOptionPane.OK_OPTION) {
+				System.exit(0);
+			}
+		}
+		else {
+			try {
+				GameManager.loadUser(gameCharacter.getUserName(), gameCharacter);
+				GameFrame.changePanel(MainPanel.class.getName(), gameCharacter);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 }

@@ -20,7 +20,7 @@ public class MainPanel extends JPanel {
 	private JLabel gameTitleLabel1 = new JLabel("Dodge");
 	private JLabel gameTitleLabel2 = new JLabel("Youtube");
 	private JLabel youtubeLabel = new JLabel(new ImageIcon("gamefiles/images/obstacle.png"));
-	private JLabel charcterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter.png"));
+	private JLabel characterLabel = new JLabel(new ImageIcon("gamefiles/images/gamecharacter.png"));
 	private JLabel moveEffectLabel = new JLabel("(((       (((");
 	private PlaySound playSound = new PlaySound();
 
@@ -29,27 +29,23 @@ public class MainPanel extends JPanel {
 		setLayout(null);
 		setBackground(Color.WHITE);
 
-		startButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				playSound.playSound("button");
-				try {
-					GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+		//changed
+		startButton.addActionListener(e -> {
+			playSound.playSound("button");
+			try {
+				GameFrame.changePanel(GamePanel.class.getName(), gameCharacter);
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		});
 
-		rankingButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				playSound.playSound("button");
-				try {
-					GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+		//changed
+		rankingButton.addActionListener(e -> {
+			playSound.playSound("button");
+			try {
+				GameFrame.changePanel(RankingPanel.class.getName(), gameCharacter);
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		});
 
@@ -57,7 +53,7 @@ public class MainPanel extends JPanel {
 		add(gameTitleLabel2);
 		add(startButton);
 		add(rankingButton);
-		add(charcterLabel);
+		add(characterLabel);
 		add(moveEffectLabel);
 		add(youtubeLabel);
 	}
@@ -85,8 +81,8 @@ public class MainPanel extends JPanel {
 		gameTitleLabel2.setFont(new Font("consolas", Font.BOLD, 48));
 		gameTitleLabel2.setForeground(Color.RED);
 		
-		charcterLabel.setSize(50,50);
-		charcterLabel.setLocation(650,200);
+		characterLabel.setSize(50,50);
+		characterLabel.setLocation(650,200);
 		
 		youtubeLabel.setSize(40,40);
 		youtubeLabel.setLocation(500,210);

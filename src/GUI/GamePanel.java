@@ -3,8 +3,7 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -158,6 +157,11 @@ public class GamePanel extends JPanel {
 		randomScoreLabel.setSize(100,50);
 		randomScoreLabel.setFont(new Font("Consolas", Font.BOLD, 15));
 		
+	}
+
+	private void moveAction(KeyEvent e) {
+		int keycode = e.getKeyCode();
+
 	}
 
 	public void setCharacterPosition() {
@@ -347,5 +351,5 @@ public class GamePanel extends JPanel {
 			currentGameCharacter.setInvincible(true);
 		}
 		
-	}//앞으로 다른아이템 효과도 여기서
+	}
 }
